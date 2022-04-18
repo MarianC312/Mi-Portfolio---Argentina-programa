@@ -1,0 +1,25 @@
+<div class="p-5 bg-seccion">
+    <div class="card w-100 bg-seccion mb-2" *ngFor="let experiencia of experienciaData">
+        <i class="fa fa-suitcase fa-5x m-2"></i>
+        <div class="card-body">
+            <div class="d-flex flex-column">
+                <small class="mb-1" [contentEditable]="contentEditable">[{{experiencia.periodo}}]</small>
+                <h5 class="card-title" [contentEditable]="contentEditable">
+                    <span>[{{experiencia.id}}] {{experiencia.titulo}}</span>
+                </h5>
+            </div>
+            <p class="card-text" [contentEditable]="contentEditable">{{experiencia.descripcion}}</p>
+            <div class="w-100 d-flex justify-content-end">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn " [ngClass]="{'btn-primary': contentEditable === false, 'btn-success': contentEditable === true}" (click)="editarContenido()">
+                      <i class="fa " [ngClass]="{'fa-pencil': contentEditable === false, 'fa-check': contentEditable === true}"></i>
+                    </button>
+                    <div class="btn-group" role="group" aria-label="Basic example" *ngIf="contentEditable === true">
+                        <button type="button" class="btn btn-warning" (click)="descartarEditarContenido()"><i class="fa fa-trash"></i></button>
+                        <button type="button " class="btn btn-danger" (click)="eliminarExperiencia(experiencia.id)"><i class="fa fa-times-circle "></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

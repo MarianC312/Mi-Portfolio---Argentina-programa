@@ -1,0 +1,4 @@
+.container-general {
+    display: flex;
+    flex-direction: column;
+}

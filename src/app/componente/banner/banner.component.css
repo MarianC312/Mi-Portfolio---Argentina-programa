@@ -1,0 +1,9 @@
+.banner-container {
+    width: 100%;
+    padding: 2rem;
+    min-height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-banner)
+}

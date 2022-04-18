@@ -1,0 +1,15 @@
+.bg-portfolio {
+    background-color: var(--bg-portfolio);
+}
+
+.navbar.bg-portfolio .navbar-nav .nav-item .nav-link {
+    color: var(--text-color);
+}
+
+.navbar.bg-portfolio .navbar-nav .nav-item:active .nav-link {
+    font-weight: bold;
+}
+
+.navbar.bg-portfolio .navbar-nav .nav-item .nav-link:hover {
+    font-weight: bold;
+}
