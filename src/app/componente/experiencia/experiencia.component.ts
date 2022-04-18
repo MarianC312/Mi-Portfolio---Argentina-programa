@@ -33,6 +33,7 @@ export class ExperienciaComponent implements OnInit {
 
   eliminarExperiencia(id: bigint) {
     this.experienciaService.eliminarExperiencia(id);
+    this.experienciaData = this.experienciaService.experienciaData;
   }
 
 }

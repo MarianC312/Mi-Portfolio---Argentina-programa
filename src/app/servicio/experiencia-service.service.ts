@@ -24,13 +24,17 @@ export class ExperienciaServiceService {
   fetchExperienciaData() {
     return this.HttpClient.get<[]>(this.url + '/ver/experiencias').pipe(
       tap(response => {
-        //console.log(response);
+        console.log(response);
         this.data = response;
       })
     )
   }
 
   eliminarExperiencia(id: bigint){
-    this.HttpClient.delete(this.url + '/borrar/experiencia/' + id);
+    this.HttpClient.delete(this.url + '/borrar/experiencia/?id=' + id).subscribe( data => {
+      console.log(data);
+
+    });
+    this.data = this.data.filter( data => data.id != id);
   }
 }
