@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ExperienciaServiceService } from '../../../servicio/experiencia-service.service';
 
 @Component({
   selector: 'app-nueva-experiencia',
@@ -10,7 +11,7 @@ export class NuevaExperienciaComponent implements OnInit {
 
   form:FormGroup;
 
-  constructor(private formBuilder:FormBuilder) {
+  constructor(private formBuilder:FormBuilder, private experienciaService:ExperienciaServiceService) {
     this.form = this.formBuilder.group(
       {
         titulo:['', [Validators.required,Validators.minLength(5),Validators.maxLength(45)]],
@@ -29,16 +30,13 @@ export class NuevaExperienciaComponent implements OnInit {
   get Logo() { return this.form.get('logo'); }
   get Descripcion() { return this.form.get('descripcion'); }
 
+  @Output("cancelar") cancelar: EventEmitter<any> = new EventEmitter();
+  @Output("fetch") fetch: EventEmitter<any> = new EventEmitter();
+
   onEnviar(event:Event){
     event.preventDefault;
-    console.log(this.form.value);
-
-    /*
-    this.autenticacionService.IniciarSesion(this.form.value).subscribe(data => {
-      console.log("DATA: " + JSON.stringify(data));
-      this.ruta.navigate(['/portfolio']);
-    });
-    */
+    this.experienciaService.agregarExperiencia(this.form.value);
+    this.fetch.emit();
   }
 
 }

@@ -21,7 +21,7 @@ export class ExperienciaServiceService {
     this.data = expData;
   }
 
-  fetchExperienciaData() {
+  fetchExperienciaData(force: boolean = false) {
     return this.HttpClient.get<[]>(this.url + '/ver/experiencias').pipe(
       tap(response => {
         console.log(response);
@@ -35,5 +35,21 @@ export class ExperienciaServiceService {
       console.log(data);
     });
     this.data = this.data.filter( data => data.id != id);
+  }
+
+  agregarExperiencia(exp: ExperienciaModel){
+    this.HttpClient.post(this.url + '/nueva/experiencia', exp).subscribe( response => {
+      if(response){
+        this.data.push(response);
+      }
+    });
+  }
+
+  editarExperiencia(exp: ExperienciaModel){
+    this.HttpClient.put(this.url + '/editar/experiencia', exp).subscribe( response => {
+      //this.data = this.data.filter( data => data.id != response.id);
+      //this.data.push(response);
+      this.fetchExperienciaData();
+    })
   }
 }

@@ -1,5 +1,4 @@
 <app-header></app-header>
-<app-experiencia [nuevaExperiencia]="true"></app-experiencia>
 <div id="nueva-experiencia" class="my-5 bg-seccion position-relative">
     <app-titulo [titulo]="'Nueva experiencia laboral'"></app-titulo>
     <form [formGroup]="form" class="m-5 px-5" (ngSubmit)="onEnviar($event)">
@@ -39,8 +38,22 @@
         </div>
         <div class="mb-3">
             <label for="descripcion" class="form-label">Descripción</label>
-            <textarea formControlName="descripcion" class="form-control" id="descripcion" name="descripcion" placeholder="..."></textarea>
+            <textarea [ngClass]="{'is-invalid': Descripcion?.errors && Descripcion?.touched, 'is-valid': !Descripcion?.errors && Descripcion?.touched}" formControlName="descripcion" class="form-control" id="descripcion" name="descripcion" placeholder="..."></textarea>
+            <div *ngIf="Descripcion?.errors && Descripcion?.touched" class="text-danger">
+                <p *ngIf="Descripcion?.hasError('required')">
+                    <small>La <u>descripción</u> es un campo obligatorio.</small>
+                </p>
+                <p *ngIf="Descripcion?.errors?.['minlength']">
+                    <small>Debes ingresar al menos 5 caracteres.</small>
+                </p>
+                <p *ngIf="Descripcion?.errors?.['maxlength']">
+                    <small>Debes ingresar hasta 1000 caracteres en el título.</small>
+                </p>
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <div class="d-flex">
+            <button type="submit" class="btn btn-primary me-2">Guardar</button>
+            <button type="button" (click)="this.cancelar.emit();" class="btn btn-secondary">Cancelar</button>
+        </div>
     </form>
 </div>

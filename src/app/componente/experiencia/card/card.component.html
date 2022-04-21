@@ -4,17 +4,17 @@
     <div class="card-body">
         <div class="d-flex flex-column">
             <small class="text-muted label" [ngClass]="{'d-none': this.contentEditable === false}">Período</small>
-            <small class="mb-2" [contentEditable]="this.contentEditable">[{{periodo}}]</small>
+            <small class="mb-2">[<span id="periodo" [contentEditable]="this.contentEditable">{{periodo}}</span>]</small>
             <small class="text-muted label" [ngClass]="{'d-none': this.contentEditable === false}">Título</small>
-            <h5 class="card-title" [contentEditable]="this.contentEditable">
-                <span>#{{id}} {{titulo}}</span>
+            <h5 class="card-title">
+                <p>#{{id}} <span id="titulo" [contentEditable]="this.contentEditable">{{titulo}}</span></p>
             </h5>
         </div>
         <small class="text-muted label" [ngClass]="{'d-none': this.contentEditable === false}">Descripción</small>
-        <p class="card-text" [contentEditable]="this.contentEditable">{{descripcion}}</p>
+        <p class="card-text" id="descripcion" [contentEditable]="this.contentEditable">{{descripcion}}</p>
         <div class="w-100 d-flex justify-content-end">
             <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn " [ngClass]="{'btn-primary': this.contentEditable === false, 'btn-outline-primary': contentEditable === true}" (click)="editar()">
+                <button type="button" class="btn " [ngClass]="{'btn-primary': this.contentEditable === false, 'btn-outline-primary': contentEditable === true}" (click)="check()">
                 <i class="fa " [ngClass]="{'fa-pencil': this.contentEditable === false, 'fa-floppy-o': this.contentEditable === true}"></i>
               </button>
                 <div class="btn-group" role="group" aria-label="Basic example" *ngIf="this.contentEditable === true">

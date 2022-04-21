@@ -11,7 +11,7 @@ export class ExperienciaComponent implements OnInit {
 
   experienciaData?: ExperienciaModel[] = [];
   contentEditable: boolean = false;
-  @Input() nuevaExperiencia: boolean = false;
+  nuevaExperiencia: boolean = false;
 
   constructor(private experienciaService: ExperienciaServiceService) { }
 
@@ -41,16 +41,48 @@ export class ExperienciaComponent implements OnInit {
     this.experienciaData = this.experienciaData.filter(value => value.id != id);
   }
 
-  agregarExperiencia(): void{
+  cargarNuevaExperiencia(): void{
+    this.nuevaExperiencia = true;
+    this.scroll('nueva-experiencia');
+  }
+
+  scroll(id: string) {
+    let element = document.getElementById(id);
+    element.scrollIntoView();
+  }
+
+  cancelarCargarNuevaExperiencia(): void{
+    this.nuevaExperiencia = false;
+    this.scroll('experiencias');
+  }
+
+  editarExperiencia(exp: any): void{
+    this.experienciaService.editarExperiencia(exp);
+    this.contentEditable = false;
+  }
+
+  fetchExperiencias(): void{
+    /*
+    this.experienciaData = [];
+    this.experienciaService.fetchExperienciaData().subscribe(() => {
+      this.experienciaData = this.experienciaService.experienciaData;
+    });
+    */
+    this.nuevaExperiencia = false;
+    //this.scroll('experiencias');
+  }
+
+  /*
+  agregarExperiencia(exp: ExperienciaModel): void{
 
     this.experienciaData.push({
-      id: null,
-      descripcion: null,
-      logo: null,
-      periodo: null,
-      titulo: null
+      id: exp.id,
+      descripcion: exp.descripcion,
+      logo: exp.logo,
+      periodo: exp.periodo,
+      titulo: exp.titulo
     });
-
   }
+  */
 
 }
