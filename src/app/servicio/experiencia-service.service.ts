@@ -30,10 +30,9 @@ export class ExperienciaServiceService {
     )
   }
 
-  eliminarExperiencia(id: bigint){
+  eliminarExperiencia(id: number){
     this.HttpClient.delete(this.url + '/borrar/experiencia/?id=' + id).subscribe( data => {
       console.log(data);
-
     });
     this.data = this.data.filter( data => data.id != id);
   }

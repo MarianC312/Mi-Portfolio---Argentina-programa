@@ -10,6 +10,13 @@ import { PortfolioComponent } from './componente/portfolio/portfolio.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ExperienciaComponent } from './componente/experiencia/experiencia.component';
+import { CardComponent } from './componente/experiencia/card/card.component';
+import { SobremiComponent } from './componente/sobremi/sobremi.component';
+import { TituloComponent } from './componente/titulo/titulo.component';
+import { EducacionComponent } from './componente/educacion/educacion.component';
+import { SkillComponent } from './componente/skill/skill.component';
+import { ProyectoComponent } from './componente/proyecto/proyecto.component';
+import { NuevaExperienciaComponent } from './componente/experiencia/nueva-experiencia/nueva-experiencia.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +25,14 @@ import { ExperienciaComponent } from './componente/experiencia/experiencia.compo
     BannerComponent,
     LoginComponent,
     PortfolioComponent,
-    ExperienciaComponent
+    ExperienciaComponent,
+    CardComponent,
+    SobremiComponent,
+    TituloComponent,
+    EducacionComponent,
+    SkillComponent,
+    ProyectoComponent,
+    NuevaExperienciaComponent
   ],
   imports: [
     BrowserModule,

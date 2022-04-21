@@ -7,9 +7,21 @@
     --bg-banner: #0b0e17;
     --bg-seccion: #2E313C;
     --text-seccion: #CCCCCC;
+    --titulo-seccion: #F05D23;
+    --linea-naranja: #F05D23;
+}
+
+body {
+    scroll-behavior: smooth;
+    background-color: var(--bg-seccion) !important;
+}
+
+.text-seccion {
+    color: var(--titulo-seccion);
 }
 
 .bg-seccion {
     background-color: var(--bg-seccion) !important;
     color: var(--text-seccion) !important;
+    margin-top: 10rem;
 }

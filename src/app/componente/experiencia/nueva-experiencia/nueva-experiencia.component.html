@@ -1,0 +1,46 @@
+<app-header></app-header>
+<app-experiencia [nuevaExperiencia]="true"></app-experiencia>
+<div id="nueva-experiencia" class="my-5 bg-seccion position-relative">
+    <app-titulo [titulo]="'Nueva experiencia laboral'"></app-titulo>
+    <form [formGroup]="form" class="m-5 px-5" (ngSubmit)="onEnviar($event)">
+        <div class="mb-3">
+            <label for="titulo" class="form-label">Título</label>
+            <input type="text" [ngClass]="{'is-invalid': Titulo?.errors && Titulo?.touched, 'is-valid': !Titulo?.errors && Titulo?.touched}" formControlName="titulo" class="form-control" id="titulo" name="titulo" placeholder="">
+            <div *ngIf="Titulo?.errors && Titulo?.touched" class="text-danger">
+                <p *ngIf="Titulo?.hasError('required')">
+                    <small>El <u>título</u> es un campo obligatorio.</small>
+                </p>
+                <p *ngIf="Titulo?.errors?.['minlength']">
+                    <small>Debes ingresar al menos 5 caracteres.</small>
+                </p>
+                <p *ngIf="Titulo?.errors?.['maxlength']">
+                    <small>Debes ingresar hasta 45 caracteres en el título.</small>
+                </p>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="periodo" class="form-label">Período</label>
+            <input type="text" [ngClass]="{'is-invalid': Periodo?.errors && Periodo?.touched, 'is-valid': !Periodo?.errors && Periodo?.touched}" formControlName="periodo" class="form-control" id="periodo" name="periodo" placeholder="AAAA - AAAA">
+            <div *ngIf="Periodo?.errors && Periodo?.touched" class="text-danger">
+                <p *ngIf="Periodo?.hasError('required')">
+                    <small>El <u>período</u> es un campo obligatorio.</small>
+                </p>
+                <p *ngIf="Periodo?.errors?.['minlength']">
+                    <small>Debes ingresar al menos 8 caracteres.</small>
+                </p>
+                <p *ngIf="Periodo?.errors?.['maxlength']">
+                    <small>Debes ingresar hasta 20 caracteres en el título.</small>
+                </p>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="logo" class="form-label">Logo</label>
+            <input type="url" [ngClass]="{'is-invalid': Logo?.errors && Logo?.touched, 'is-valid': !Logo?.errors && Logo?.touched}" formControlName="logo" class="form-control" id="logo" name="logo" placeholder="https://dirección.com/de/imagen">
+        </div>
+        <div class="mb-3">
+            <label for="descripcion" class="form-label">Descripción</label>
+            <textarea formControlName="descripcion" class="form-control" id="descripcion" name="descripcion" placeholder="..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>

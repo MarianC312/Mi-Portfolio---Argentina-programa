@@ -6,10 +6,37 @@
     color: var(--text-color);
 }
 
-.navbar.bg-portfolio .navbar-nav .nav-item:active .nav-link {
-    font-weight: bold;
+.navbar.bg-portfolio .navbar-nav .nav-item .nav-link:active,
+.navbar.bg-portfolio .navbar-nav .nav-item .nav-link:focus {
+    box-shadow: none;
 }
 
-.navbar.bg-portfolio .navbar-nav .nav-item .nav-link:hover {
-    font-weight: bold;
+.navbar.bg-portfolio .navbar-nav .nav-item .nav-link:not(.login):active::after,
+.navbar.bg-portfolio .navbar-nav .nav-item .nav-link:not(.login):focus::after {
+    /*font-weight: bold;*/
+    /*text-decoration: underline;*/
+    font-family: FontAwesome;
+    content: "\f0a5";
+    margin-left: .5rem;
+    transition-duration: .5s;
+}
+
+.navbar.bg-portfolio .navbar-nav .nav-item .nav-link:not(.login):hover::after {
+    /*font-weight: bold;*/
+    /*text-decoration: underline;*/
+    font-family: FontAwesome;
+    content: "\f0a5";
+    margin-left: .1rem;
+    transition-duration: .5s;
+}
+
+.btn.nav-link.login {
+    background-color: black;
+    color: #FFF !important;
+    transition-duration: .5s;
+}
+
+.btn.nav-link.login:hover {
+    background-color: #ba130d;
+    transition-duration: .5s;
 }

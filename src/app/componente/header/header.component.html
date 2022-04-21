@@ -1,28 +1,28 @@
-<nav class="navbar navbar-expand-md navbar-light bg-portfolio">
+<nav class="navbar navbar-expand-md navbar-light bg-portfolio fixed-top">
     <a class="navbar-brand" href="#">Mi portafolio</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-    <div class="collapse navbar-collapse justify-content-end" id="navbarColor03">
+    <div class="collapse navbar-collapse justify-content-end px-2" id="navbarColor03">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Sobre mi</a>
+                <button type="button" [routerLink]="['/portfolio']" fragment="sobremi" (click)="scroll('sobremi')" class="btn nav-link" data-bs-toggle="button">Sobre mi</button>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Experiencia</a>
+                <button type="button" [routerLink]="['/portfolio']" fragment="experiencia" (click)="scroll('experiencia')" class="btn nav-link" data-bs-toggle="button">Experiencia</button>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Educación</a>
+                <button type="button" [routerLink]="['/portfolio']" fragment="educacion" (click)="scroll('educacion')" class="btn nav-link">Educación</button>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Skills</a>
+                <button type="button" [routerLink]="['/portfolio']" fragment="skills" (click)="scroll('skills')" class="btn nav-link">Skills</button>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Proyectos</a>
+                <button type="button" [routerLink]="['/portfolio']" fragment="proyectos" (click)="scroll('proyectos')" class="btn nav-link">Proyectos</button>
             </li>
             <li class="nav-item login">
-                <a class="nav-link" href="/login">Ingresar</a>
+                <button type="button" [routerLink]="['/login']" (click)="scroll('login')" class="btn nav-link login"><i class="fa fa-sign-in"></i></button>
             </li>
         </ul>
     </div>

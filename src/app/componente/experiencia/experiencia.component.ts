@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ExperienciaModel } from 'src/app/modelo/experiencia-model.model';
 import { ExperienciaServiceService } from '../../servicio/experiencia-service.service';
 
@@ -9,8 +9,9 @@ import { ExperienciaServiceService } from '../../servicio/experiencia-service.se
 })
 export class ExperienciaComponent implements OnInit {
 
-  experienciaData: ExperienciaModel[] = [];
+  experienciaData?: ExperienciaModel[] = [];
   contentEditable: boolean = false;
+  @Input() nuevaExperiencia: boolean = false;
 
   constructor(private experienciaService: ExperienciaServiceService) { }
 
@@ -31,9 +32,25 @@ export class ExperienciaComponent implements OnInit {
     this.contentEditable = false;
   }
 
-  eliminarExperiencia(id: bigint) {
+  eliminarExperiencia(id: number) {
     this.experienciaService.eliminarExperiencia(id);
-    this.experienciaData = this.experienciaService.experienciaData;
+    this.removerExperienciaDelArrego(id);
+  }
+
+  removerExperienciaDelArrego(id: number){
+    this.experienciaData = this.experienciaData.filter(value => value.id != id);
+  }
+
+  agregarExperiencia(): void{
+
+    this.experienciaData.push({
+      id: null,
+      descripcion: null,
+      logo: null,
+      periodo: null,
+      titulo: null
+    });
+
   }
 
 }
