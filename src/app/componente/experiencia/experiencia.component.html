@@ -1,7 +1,8 @@
 <div id="experiencias" class="my-5 bg-seccion position-relative">
     <app-titulo [titulo]="'Experiencias laborales'"></app-titulo>
     <div id="experiencia" class="p-5" *ngFor="let experiencia of experienciaData">
-        <app-card [id]="experiencia.id" [titulo]="experiencia.titulo" [descripcion]="experiencia.descripcion" [periodo]="experiencia.periodo" (eliminar)="eliminarExperiencia(experiencia.id)" [editar]="editarContenido" [guardar]="editarExperiencia" [descartar]="descartarEditarContenido"></app-card>
+        <app-card [id]="experiencia.id" [titulo]="experiencia.titulo" [descripcion]="experiencia.descripcion" [periodo]="experiencia.periodo" [logo]="experiencia.logo" (eliminar)="eliminarExperiencia(experiencia.id)" [editar]="editarContenido" [guardar]="editarExperiencia"
+            [descartar]="descartarEditarContenido"></app-card>
     </div>
     <div *ngIf="!nuevaExperiencia; else nuevaExperienciaContenedor" class="my-3 d-flex justify-content-center align-items-center">
         <button type="button" class="btn btn-primary" (click)="cargarNuevaExperiencia()">

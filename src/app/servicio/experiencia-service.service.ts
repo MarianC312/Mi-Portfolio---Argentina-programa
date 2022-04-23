@@ -47,9 +47,11 @@ export class ExperienciaServiceService {
 
   editarExperiencia(exp: ExperienciaModel){
     this.HttpClient.put(this.url + '/editar/experiencia', exp).subscribe( response => {
-      //this.data = this.data.filter( data => data.id != response.id);
-      //this.data.push(response);
-      this.fetchExperienciaData();
+      if(response){
+        console.log(response);
+        this.data = this.data.filter( data => data != response);
+        this.data.push(response);
+      }
     })
   }
 }
