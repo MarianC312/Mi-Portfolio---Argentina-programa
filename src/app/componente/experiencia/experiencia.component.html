@@ -5,9 +5,9 @@
             [descartar]="descartarEditarContenido"></app-card>
     </div>
     <div *ngIf="!nuevaExperiencia; else nuevaExperienciaContenedor" class="my-3 d-flex justify-content-center align-items-center">
-        <button type="button" class="btn btn-primary" (click)="cargarNuevaExperiencia()">
-        <i class="fa fa-plus"></i> Agregar experiencia laboral
-      </button>
+        <button type="button" class="btn btn-link" (click)="cargarNuevaExperiencia()">
+          <i class="fa fa-plus"></i> Agregar experiencia laboral
+        </button>
     </div>
     <ng-template #nuevaExperienciaContenedor>
         <app-nueva-experiencia (cancelar)="cancelarCargarNuevaExperiencia()" (fetch)="fetchExperiencias()"></app-nueva-experiencia>

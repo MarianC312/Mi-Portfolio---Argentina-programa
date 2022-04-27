@@ -1,34 +1,37 @@
 <div class="card w-100 mb-2">
     <button type="button " class="btn btn-danger delete" [ngClass]="{'d-none': this.contentEditable === false}" (click)="this.eliminar.emit();"><i class="fa fa-trash"></i></button>
-    <div class="d-flex">
-        <div id="logoContainer " class="my-2 mx-3">
-            <i class="fa {{this.logo}} fa-5x"></i>
-        </div>
-        <div class="d-flex flex-column" [ngClass]="{'d-none': this.contentEditable === false}">
-            <small class="text-muted label">Ícono</small>
-            <span class="label" id="logo" [contentEditable]="this.contentEditable">{{this.logo}}</span>
-        </div>
-    </div>
-    <div class="card-body">
-        <div class="d-flex flex-column">
-            <small class="text-muted label" [ngClass]="{'d-none': this.contentEditable === false}">Período</small>
-            <small class="mb-2">[<span id="periodo" [contentEditable]="this.contentEditable">{{periodo}}</span>]</small>
-            <small class="text-muted label" [ngClass]="{'d-none': this.contentEditable === false}">Título</small>
-            <h5 class="card-title">
-                <p>#{{id}} <span id="titulo" [contentEditable]="this.contentEditable">{{titulo}}</span></p>
-            </h5>
-        </div>
-        <small class="text-muted label" [ngClass]="{'d-none': this.contentEditable === false}">Descripción</small>
-        <p class="card-text" id="descripcion" [contentEditable]="this.contentEditable">{{descripcion}}</p>
-        <div class="w-100 d-flex justify-content-end">
+    <div class="d-flex align-items-center">
+        <div class="d-flex justify-content-end" style="height: 50px;">
             <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn " [ngClass]="{'btn-primary': this.contentEditable === false, 'btn-outline-primary': contentEditable === true}" (click)="check()">
-                <i class="fa " [ngClass]="{'fa-pencil': this.contentEditable === false, 'fa-floppy-o': this.contentEditable === true}"></i>
-              </button>
+                <button type="button" class="btn " [ngClass]="{'btn-link': this.contentEditable === false, 'btn-primary': contentEditable === true}" (click)="check()">
+                  <i class="fa " [ngClass]="{'fa-pencil': this.contentEditable === false, 'fa-floppy-o': this.contentEditable === true}"></i>
+                </button>
                 <div class="btn-group" role="group" aria-label="Basic example" *ngIf="this.contentEditable === true">
-                    <button type="button" class="btn btn-outline-danger" (click)="descartar()"><i class="fa fa-times-circle"></i></button>
+                    <button type="button" class="btn btn-danger" (click)="descartar()"><i class="fa fa-times-circle"></i></button>
                 </div>
             </div>
+        </div>
+
+        <div class="d-flex flex-column">
+            <div id="logoContainer " class="my-2 mx-3">
+                <i class="fa {{this.logo}} fa-5x"></i>
+            </div>
+            <div class="d-flex flex-column" [ngClass]="{'d-none': this.contentEditable === false}">
+                <small class="text-muted label">Ícono</small>
+                <span class="label" id="logo" [contentEditable]="this.contentEditable">{{this.logo}}</span>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="d-flex flex-column">
+                <small class="text-muted label" [ngClass]="{'d-none': this.contentEditable === false}">Período</small>
+                <small class="mb-2">[<span id="periodo" [contentEditable]="this.contentEditable">{{periodo}}</span>]</small>
+                <small class="text-muted label" [ngClass]="{'d-none': this.contentEditable === false}">Título</small>
+                <h5 class="card-title">
+                    <p>#{{id}} <span id="titulo" [contentEditable]="this.contentEditable">{{titulo}}</span></p>
+                </h5>
+            </div>
+            <small class="text-muted label" [ngClass]="{'d-none': this.contentEditable === false}">Descripción</small>
+            <p class="card-text" id="descripcion" [contentEditable]="this.contentEditable">{{descripcion}}</p>
         </div>
     </div>
 </div>

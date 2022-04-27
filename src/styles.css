@@ -9,11 +9,38 @@
     --text-seccion: #CCCCCC;
     --titulo-seccion: #F05D23;
     --linea-naranja: #F05D23;
+    --primario: #CCCCCC;
+    --primario-hover: #F05D23;
 }
 
 body {
     scroll-behavior: smooth;
     background-color: var(--bg-seccion) !important;
+}
+
+*[contenteditable="true"] {
+    background-color: #FFF;
+    color: var(--text-color);
+    padding: 0.3rem;
+    border-radius: 0.1rem;
+    min-width: 100px;
+    transition-duration: .5s;
+}
+
+*[contenteditable="true"]::before {
+    font-family: FontAwesome;
+    content: "\f14b";
+    color: lightgray;
+    margin-right: 0.25rem;
+    font-size: 0.75rem;
+}
+
+.btn-link {
+    color: var(--primario) !important
+}
+
+.btn-link:hover {
+    color: var(--primario-hover) !important;
 }
 
 .text-seccion {
