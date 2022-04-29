@@ -18,6 +18,7 @@ import { SkillComponent } from './componente/skill/skill.component';
 import { ProyectoComponent } from './componente/proyecto/proyecto.component';
 import { NuevaExperienciaComponent } from './componente/experiencia/nueva-experiencia/nueva-experiencia.component';
 import { PersonaComponent } from './componente/persona/persona.component';
+import { AptitudComponent } from './componente/sobremi/aptitud/aptitud.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { PersonaComponent } from './componente/persona/persona.component';
     SkillComponent,
     ProyectoComponent,
     NuevaExperienciaComponent,
-    PersonaComponent
+    PersonaComponent,
+    AptitudComponent
   ],
   imports: [
     BrowserModule,

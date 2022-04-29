@@ -8,9 +8,9 @@ import { tap } from 'rxjs';
 })
 export class PersonaServiceService {
 
-  private id: Number = 9;
+  private id: number = 9;
   private data: PersonaModel = null;
-  private url: String = "http://localhost:8080";
+  private url: string = "http://localhost:8080";
 
   constructor(private HttpClient: HttpClient) { }
 
@@ -31,7 +31,7 @@ export class PersonaServiceService {
     this.data = perData;
   }
 
-  getId(): Number{
+  getId(): number{
     return this.id;
   }
 

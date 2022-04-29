@@ -21,9 +21,11 @@ body {
 *[contenteditable="true"] {
     background-color: #FFF;
     color: var(--text-color);
+    display: block;
     padding: 0.3rem;
     border-radius: 0.1rem;
     min-width: 100px;
+    width: 100%;
     transition-duration: .5s;
 }
 
@@ -51,4 +53,15 @@ body {
     background-color: var(--bg-seccion) !important;
     color: var(--text-seccion) !important;
     margin-top: 10rem;
+}
+
+.modal-content {
+    background-color: var(--bg-seccion) !important;
+    color: var(--text-seccion) !important;
+}
+
+.btn-check:focus+.btn,
+.btn:focus {
+    outline: 0;
+    box-shadow: none !important;
 }

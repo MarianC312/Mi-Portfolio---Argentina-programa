@@ -1,0 +1,65 @@
+<div class="d-flex my-2 mx-2 align-items-center" style="min-width: 15rem;" [ngClass]="{'w-100': this.contentEditable === true}">
+    <div class="btn-group" style="height: 35px;" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-sm btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-pencil"></i></button>
+        <button type="button" class="btn btn-sm btn-link" (click)="this.eliminar.emit()"><i class="fa fa-times"></i></button>
+    </div>
+    <div class="my-1 mx-2 d-flex flex-wrap fw-bold w-100 align-items-center">
+        <div class="d-flex flex-column justify-content-start align-items-center me-2" style="min-width: 35px; min-height: 35px;">
+            <i class="fa fa-{{icono}} fa-2x" [ngClass]="{'d-none': this.contentEditable === true}"></i>
+            <div class="d-flex flex-column ms-2" [ngClass]="{'d-none': this.contentEditable === false}">
+                <small class="text-muted label">Ícono</small>
+                <span id="icono" class="text-uppercase text-break" [contentEditable]="this.contentEditable">
+                  {{icono}}
+                </span>
+            </div>
+        </div>
+        <div class="d-flex flex-column">
+            <small class="text-muted label" [ngClass]="{'d-none': this.contentEditable === false}">Título</small>
+            <span id="titulo" class="text-uppercase text-break" [contentEditable]="this.contentEditable">
+              {{titulo}}
+            </span>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar aptitud</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="form" id="apt-f-{{id}}" class="m-5 px-5" (ngSubmit)="onEnviar($event)" #documentEditForm="ngForm">
+                    <div class="mb-3">
+                        <label for="icono" class="form-label"><i class="fa fa-pencil"></i> Ícono</label>
+                        <input type="text" autocomplete="off" [ngClass]="{'is-invalid': Icono?.errors && Icono?.touched, 'is-valid': !Icono?.errors && Icono?.touched}" [(ngModel)]="icono" formControlName="icono" list="listaIcono" class="form-control" id="icono" placeholder="Tipea para buscar...">
+                        <div *ngIf="Icono?.errors && Icono?.touched" class="text-danger">
+                            <p *ngIf="Icono?.hasError('required')">
+                                <small>El ícono es un campo obligatorio.</small>
+                            </p>
+                        </div>
+                        <datalist id="listaIcono">
+                          <option *ngFor="let item of listaIcono" [value]="item" ><i class="fa fa-{{item}}"></i> {{item}}</option>
+                        </datalist>
+                    </div>
+                    <div class="mb-3">
+                        <label for="titulo" class="form-label"><i class="fa fa-pencil"></i> Título</label>
+                        <input type="text" [ngClass]="{'is-invalid': Titulo?.errors && Titulo?.touched, 'is-valid': !Titulo?.errors && Titulo?.touched}" [(ngModel)]="titulo" formControlName="titulo" class="form-control" id="titulo">
+                        <div *ngIf="Titulo?.errors && Titulo?.touched" class="text-danger">
+                            <p *ngIf="Titulo?.hasError('required')">
+                                <small>El título es un campo obligatorio.</small>
+                            </p>
+                            <p *ngIf="Titulo?.errors?.['minlength']">
+                                <small>El título debe tener al menos 8 caracteres.</small>
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary" (click)="documentEditForm.ngSubmit.emit($event)">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>

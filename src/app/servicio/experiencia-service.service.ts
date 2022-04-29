@@ -23,14 +23,12 @@ export class ExperienciaServiceService {
   }
 
   fetchExperienciaData(force: boolean = false) {
-
     return this.HttpClient.get<[]>(this.url + '/ver/experiencias').pipe(
       tap(response => {
         let respuesta: ExperienciaModel[]  = response;
         this.data = respuesta.filter(data => data.persona.id == this.personaService.getId());
       })
     )
-
   }
 
   eliminarExperiencia(id: number){
