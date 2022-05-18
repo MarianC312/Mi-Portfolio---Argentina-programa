@@ -19,6 +19,10 @@ import { ProyectoComponent } from './componente/proyecto/proyecto.component';
 import { NuevaExperienciaComponent } from './componente/experiencia/nueva-experiencia/nueva-experiencia.component';
 import { PersonaComponent } from './componente/persona/persona.component';
 import { AptitudComponent } from './componente/sobremi/aptitud/aptitud.component';
+import { EducacionContainerComponent } from './componente/educacion/educacion-container/educacion-container.component';
+import { NgCircleProgressModule } from 'ng-circle-progress';
+import { HabilidadComponent } from './componente/skill/habilidad/habilidad.component';
+import { ProyectoCardComponent } from './componente/proyecto/proyecto-card/proyecto-card.component';
 
 @NgModule({
   declarations: [
@@ -36,13 +40,37 @@ import { AptitudComponent } from './componente/sobremi/aptitud/aptitud.component
     ProyectoComponent,
     NuevaExperienciaComponent,
     PersonaComponent,
-    AptitudComponent
+    AptitudComponent,
+    EducacionContainerComponent,
+    HabilidadComponent,
+    ProyectoCardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgCircleProgressModule.forRoot({
+      // set defaults here
+      radius: 100,
+      outerStrokeWidth: 20,
+      innerStrokeWidth: 2,
+      outerStrokeColor: "#F05D23",
+      innerStrokeColor: "#2E313C",
+      animationDuration: 300,
+      maxPercent: 100,
+      showTitle: true,
+      showSubtitle: true,
+      showUnits: false,
+      imageHeight: 80,
+      imageWidth: 80,
+      lazy: true,
+      unitsFontSize: "12",
+      titleFontSize: "22",
+      titleFontWeight: "bold",
+      subtitleFontSize: "14",
+      titleColor: "#F05D23"
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

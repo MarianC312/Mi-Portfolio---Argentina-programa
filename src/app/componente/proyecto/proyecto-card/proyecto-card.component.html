@@ -1,14 +1,27 @@
-<div id="proyecto" class="my-5 bg-seccion position-relative p-5">
-    <app-titulo [titulo]="'Mis proyectos'"></app-titulo>
-    <div class="py-5 d-flex justify-content-evenly flex-wrap">
-        <app-proyecto-card *ngFor="let proyecto of proyectoData" [titulo]="proyecto.titulo" [id]="proyecto.id" [imagen]="proyecto.imagen" [descripcion]="proyecto.descripcion" [url_deploy]="proyecto.url_deploy" [url_git]="proyecto.url_git" (eliminar)="eliminarProyecto(proyecto.id)"
-            [guardar]="editarProyecto"></app-proyecto-card>
+<div class="card position-relative" style="width: 15rem;">
+    <div class="btn-group" style="height: 35px; position: absolute; right: .5rem; top: .5rem;" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-sm btn-link" data-bs-toggle="modal" [attr.data-bs-target]="'#proy-' + id + '-modal'"><i class="fa fa-pencil"></i></button>
+        <button type="button" class="btn btn-sm btn-link" (click)="this.eliminar.emit()"><i class="fa fa-times"></i></button>
+    </div>
+    <div *ngIf="imagen.length > 0; else imagenNull" class="my-3 d-flex justify-content-center align-items-center">
+        <img src="{{imagen}}" class="card-img-top" alt="{{titulo}}">
+    </div>
+    <ng-template #imagenNull>
+        <div class="d-flex w-100 justify-content-center align-items-center" style="height: 12rem">
+            <i class="fa fa-picture-o fa-5x" title="No se cargó una imagen."></i>
+        </div>
+    </ng-template>
+    <div class="card-body">
+        <h5 class="card-title">{{titulo}}</h5>
+        <p class="card-text">{{descripcion}}</p>
+        <div class="d-flex justify-content-end mt-2">
+            <div *ngIf="url_git" class="m-1">
+                <button type="button" class="btn btn-primary"><i class="fa fa-github"></i></button>
+            </div>
+        </div>
     </div>
 </div>
-<div class="d-flex justify-content-center align-items-center my-3">
-    <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#nuevoProyectoModal"><i class="fa fa-plus"></i> Agregar habilidad</button>
-</div>
-<div class="modal fade" id="nuevoProyectoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" [attr.id]="'proy-' + id + '-modal'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -19,7 +32,7 @@
                 <form [formGroup]="form" id="proy-f-nuevo" class="m-5 px-5" (ngSubmit)="onEnviar($event)" #documentEditForm="ngForm">
                     <div class="mb-3">
                         <label for="titulo" class="form-label"><i class="fa fa-pencil"></i> Título</label>
-                        <input type="text" [ngClass]="{'is-invalid': Titulo?.errors && Titulo?.touched, 'is-valid': !Titulo?.errors && Titulo?.touched}" formControlName="titulo" class="form-control" id="titulo">
+                        <input type="text" [ngClass]="{'is-invalid': Titulo?.errors && Titulo?.touched, 'is-valid': !Titulo?.errors && Titulo?.touched}" [(ngModel)]="titulo" formControlName="titulo" class="form-control" id="titulo">
                         <div *ngIf="Titulo?.errors && Titulo?.touched" class="text-danger">
                             <p *ngIf="Titulo?.hasError('required')">
                                 <small>El título es un campo obligatorio.</small>
@@ -31,11 +44,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="imagen" class="form-label"><i class="fa fa-pencil"></i> Imagen</label>
-                        <input type="text" [ngClass]="{'is-invalid': Imagen?.errors && Imagen?.touched, 'is-valid': !Imagen?.errors && Imagen?.touched}" formControlName="imagen" class="form-control" id="imagen">
+                        <input type="text" [ngClass]="{'is-invalid': Imagen?.errors && Imagen?.touched, 'is-valid': !Imagen?.errors && Imagen?.touched}" [(ngModel)]="imagen" formControlName="imagen" class="form-control" id="imagen">
                     </div>
                     <div class="mb-3">
                         <label for="descripcion" class="form-label"><i class="fa fa-pencil"></i> Descripcion</label>
-                        <input type="text" [ngClass]="{'is-invalid': Descripcion?.errors && Descripcion?.touched, 'is-valid': !Descripcion?.errors && Descripcion?.touched}" formControlName="descripcion" class="form-control" id="descripcion">
+                        <input type="text" [ngClass]="{'is-invalid': Descripcion?.errors && Descripcion?.touched, 'is-valid': !Descripcion?.errors && Descripcion?.touched}" [(ngModel)]="descripcion" formControlName="descripcion" class="form-control" id="descripcion">
                         <div *ngIf="Descripcion?.errors && Descripcion?.touched" class="text-danger">
                             <p *ngIf="Descripcion?.hasError('required')">
                                 <small>La descripcion es un campo obligatorio.</small>
@@ -48,12 +61,12 @@
 
                     <div class="mb-3">
                         <label for="url_git" class="form-label"><i class="fa fa-pencil"></i> Git repo</label>
-                        <input type="text" [ngClass]="{'is-invalid': Git?.errors && Git?.touched, 'is-valid': !Git?.errors && Git?.touched}" formControlName="url_git" class="form-control" id="url_git">
+                        <input type="text" [ngClass]="{'is-invalid': Git?.errors && Git?.touched, 'is-valid': !Git?.errors && Git?.touched}" [(ngModel)]="url_git" formControlName="url_git" class="form-control" id="url_git">
                     </div>
 
                     <div class="mb-3">
                         <label for="url_deploy" class="form-label"><i class="fa fa-pencil"></i> Url deploy</label>
-                        <input type="text" [ngClass]="{'is-invalid': Deploy?.errors && Deploy?.touched, 'is-valid': !Deploy?.errors && Deploy?.touched}" formControlName="url_deploy" class="form-control" id="url_deploy">
+                        <input type="text" [ngClass]="{'is-invalid': Deploy?.errors && Deploy?.touched, 'is-valid': !Deploy?.errors && Deploy?.touched}" [(ngModel)]="url_deploy" formControlName="url_deploy" class="form-control" id="url_deploy">
                     </div>
                 </form>
             </div>

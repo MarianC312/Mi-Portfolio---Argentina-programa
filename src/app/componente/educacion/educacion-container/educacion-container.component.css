@@ -1,0 +1,18 @@
+.container-image {
+    width: auto;
+}
+
+.container-feature {
+    flex: 1;
+    text-align: right;
+}
+
+.card {
+    display: flex;
+    flex-direction: row-reverse;
+    border: none;
+    border-bottom: 1.75px solid var(--linea-naranja);
+    border-radius: 0;
+    margin-bottom: 3rem !important;
+    background-color: var(--bg-seccion) !important;
+}

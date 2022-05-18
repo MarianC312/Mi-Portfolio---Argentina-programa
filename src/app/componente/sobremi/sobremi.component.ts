@@ -13,7 +13,7 @@ export class SobremiComponent implements OnInit {
 
   public data?: SobremiModel[] = [];
   contentEditable: boolean = false;
-  nuevaExperiencia: boolean = false;
+  nuevaAptitud: boolean = false;
   form:FormGroup;
   public listaIcono: String[] = ["code","music","heart","star","check","times","cog","home","flag","book","camera","picture-o","play","trophy","exclamation","users","globe","suitcase","smile-o","thumbs-up"]
 
