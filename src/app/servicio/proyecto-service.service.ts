@@ -10,7 +10,7 @@ import { tap } from 'rxjs';
 export class ProyectoServiceService {
 
   private data: ProyectoModel[] = [];
-  private url: String = "https://immense-meadow-61678.herokuapp.com/";
+  private url: String = "https://immense-meadow-61678.herokuapp.com";
 
   constructor(private HttpClient: HttpClient, private personaService: PersonaServiceService) { }
 
