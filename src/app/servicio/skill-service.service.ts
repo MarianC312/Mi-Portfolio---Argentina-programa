@@ -10,7 +10,7 @@ import { tap } from 'rxjs';
 export class SkillServiceService {
 
   private data: SkillModel[] = [];
-  private url: String = "http://localhost:8080";
+  private url: String = "https://immense-meadow-61678.herokuapp.com/";
 
   constructor(private HttpClient: HttpClient, private personaService: PersonaServiceService) { }
 

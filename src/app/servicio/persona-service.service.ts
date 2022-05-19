@@ -8,9 +8,9 @@ import { tap } from 'rxjs';
 })
 export class PersonaServiceService {
 
-  private id: number = 9;
+  private id: number = 1;
   private data: PersonaModel = null;
-  private url: string = "http://localhost:8080";
+  private url: string = "https://immense-meadow-61678.herokuapp.com";
 
   constructor(private HttpClient: HttpClient) { }
 

@@ -10,7 +10,7 @@ import { PersonaServiceService } from './persona-service.service';
 export class ExperienciaServiceService {
 
   private data: ExperienciaModel[] = [];
-  private url: String = "http://localhost:8080";
+  private url: String = "https://immense-meadow-61678.herokuapp.com/";
 
   constructor(private HttpClient: HttpClient, private personaService: PersonaServiceService) {}
 
