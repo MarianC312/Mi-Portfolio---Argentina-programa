@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProyectoModel } from '../../modelo/proyecto-model.model';
 import { ProyectoServiceService } from '../../servicio/proyecto-service.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-proyecto',
@@ -14,13 +15,17 @@ export class ProyectoComponent implements OnInit {
   contentEditable: boolean = false;
   nuevaProyecto: boolean = false;
   form:FormGroup;
+  loading: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private proyectoService: ProyectoServiceService) { }
 
   ngOnInit(): void {
+    this.loading = true;
     this.proyectoData = this.proyectoService.proyectoData;
     if(!this.proyectoData?.length){
-      this.proyectoService.fetchProyectoData().subscribe(() => {
+      this.proyectoService.fetchProyectoData().pipe(
+        finalize(() => this.loading = false)
+      ).subscribe(() => {
         this.proyectoData = this.proyectoService.proyectoData;
       });
     }

@@ -8,15 +8,18 @@
     </div>
     <ng-template #imagenNull>
         <div class="d-flex w-100 justify-content-center align-items-center" style="height: 12rem">
-            <i class="fa fa-picture-o fa-5x" title="No se cargó una imagen."></i>
+            <i class="fa fa-picture-o fa-5x" style="color: var(--text-primario); opacity: 0.3;" title="No se cargó una imagen."></i>
         </div>
     </ng-template>
     <div class="card-body">
         <h5 class="card-title">{{titulo}}</h5>
         <p class="card-text">{{descripcion}}</p>
         <div class="d-flex justify-content-end mt-2">
-            <div *ngIf="url_git" class="m-1">
+            <div *ngIf="url_git != null" class="m-1">
                 <button type="button" class="btn btn-primary"><i class="fa fa-github"></i></button>
+            </div>
+            <div *ngIf="url_deploy != null" class="m-1">
+                <button type="button" class="btn btn-primary"><i class="fa fa-external-link"></i></button>
             </div>
         </div>
     </div>

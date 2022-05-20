@@ -23,6 +23,7 @@ import { EducacionContainerComponent } from './componente/educacion/educacion-co
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { HabilidadComponent } from './componente/skill/habilidad/habilidad.component';
 import { ProyectoCardComponent } from './componente/proyecto/proyecto-card/proyecto-card.component';
+import { LoadingComponent } from './componente/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ProyectoCardComponent } from './componente/proyecto/proyecto-card/proye
     AptitudComponent,
     EducacionContainerComponent,
     HabilidadComponent,
-    ProyectoCardComponent
+    ProyectoCardComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

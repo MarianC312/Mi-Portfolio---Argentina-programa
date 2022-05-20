@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { finalize } from 'rxjs';
 import { ExperienciaModel } from 'src/app/modelo/experiencia-model.model';
 import { ExperienciaServiceService } from '../../servicio/experiencia-service.service';
 
@@ -12,13 +13,17 @@ export class ExperienciaComponent implements OnInit {
   experienciaData?: ExperienciaModel[] = [];
   contentEditable: boolean = false;
   nuevaExperiencia: boolean = false;
+  loading: boolean = false;
 
   constructor(private experienciaService: ExperienciaServiceService) { }
 
   ngOnInit(): void {
+    this.loading = true;
     this.experienciaData = this.experienciaService.experienciaData;
     if(!this.experienciaData?.length){
-      this.experienciaService.fetchExperienciaData().subscribe(() => {
+      this.experienciaService.fetchExperienciaData().pipe(
+        finalize(() => this.loading = false)
+      ).subscribe(() => {
         this.experienciaData = this.experienciaService.experienciaData;
       });
     }

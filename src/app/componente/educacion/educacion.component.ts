@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EducacionModel } from '../../modelo/educacion-model.model';
 import { EducacionServiceService } from '../../servicio/educacion-service.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-educacion',
@@ -14,15 +15,21 @@ export class EducacionComponent implements OnInit {
   contentEditable: boolean = false;
   nuevaEducacion: boolean = false;
   form:FormGroup;
+  loading: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private educacionService: EducacionServiceService) { }
 
   ngOnInit(): void {
+    this.loading = true;
     this.data = this.educacionService.educacionData;
     if(!this.data?.length){
-      this.educacionService.fetchEducacionData().subscribe(() => {
+      this.educacionService.fetchEducacionData().pipe(
+        finalize(() => this.loading = false)
+      ).subscribe(() => {
         this.data = this.educacionService.educacionData;
       });
+    }else{
+      this.loading = true;
     }
     this.form = this.formBuilder.group(
       {

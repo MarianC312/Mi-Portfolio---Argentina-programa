@@ -1,6 +1,4 @@
-<app-header></app-header>
 <div id="experiencias" class="my-5 bg-seccion position-relative">
-    <app-titulo [titulo]="'Iniciar sesión'"></app-titulo>
     <form [formGroup]="form" class="m-5 px-5" (ngSubmit)="onEnviar($event)">
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label"><i class="fa fa-envelope-o"></i> Email</label>
@@ -26,6 +24,5 @@
                 </p>
             </div>
         </div>
-        <button type=" submit " class="btn btn-primary ">Ingresar</button>
     </form>
 </div>

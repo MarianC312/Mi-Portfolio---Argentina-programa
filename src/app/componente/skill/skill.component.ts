@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SkillModel } from '../../modelo/skill-model.model';
 import { SkillServiceService } from '../../servicio/skill-service.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-skill',
@@ -14,13 +15,17 @@ export class SkillComponent implements OnInit {
   contentEditable: boolean = false;
   nuevaSkill: boolean = false;
   form:FormGroup;
+  loading: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private skillService: SkillServiceService) { }
 
   ngOnInit(): void {
+    this.loading = true;
     this.skillData = this.skillService.skillData;
     if(!this.skillData?.length){
-      this.skillService.fetchSkillData().subscribe(() => {
+      this.skillService.fetchSkillData().pipe(
+        finalize(() => this.loading = false)
+      ).subscribe(() => {
         this.skillData = this.skillService.skillData;
       });
     }

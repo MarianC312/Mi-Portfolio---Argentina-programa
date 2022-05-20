@@ -2,6 +2,10 @@
 
 :root {
     --bg-portfolio: #F05D23;
+    --text-primario: #F05D23;
+    --bg-primario: #F05D23;
+    --bg-primario-hover: 240, 93, 35;
+    --text-black: #0E0F13;
     --text-color: #0E0F13;
     --rgb-text-color-titulo: 240, 93, 35, .1;
     --bg-banner: #0b0e17;
@@ -43,6 +47,17 @@ body {
 
 .btn-link:hover {
     color: var(--primario-hover) !important;
+}
+
+.btn-primary {
+    background-color: var(--bg-primario) !important;
+    border-color: var(--bg-primario) !important;
+    transition-duration: .5s;
+}
+
+.btn-primary:hover {
+    background-color: rgba(var(--bg-primario-hover), .75) !important;
+    transition-duration: .5s;
 }
 
 .text-seccion {

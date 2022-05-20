@@ -2,3 +2,13 @@
     min-height: 12rem;
     min-width: 5rem;
 }
+
+.card-title {
+    color: var(--text-primario) !important;
+    font-weight: bold;
+    font-variant-caps: all-petite-caps;
+}
+
+.card-text {
+    color: var(--text-black) !important;
+}

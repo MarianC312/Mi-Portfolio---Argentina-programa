@@ -22,8 +22,26 @@
                 <button type="button" [routerLink]="['/portfolio']" fragment="proyecto" (click)="scroll('proyectos')" class="btn nav-link">Proyectos</button>
             </li>
             <li class="nav-item login">
-                <button type="button" [routerLink]="['/login']" (click)="scroll('login')" class="btn nav-link login"><i class="fa fa-sign-in"></i></button>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#loginModal" class="btn nav-link login">Login</button>
             </li>
         </ul>
     </div>
 </nav>
+
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Iniciar sesión</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <app-login></app-login>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Ingresar</button>
+            </div>
+        </div>
+    </div>
+</div>

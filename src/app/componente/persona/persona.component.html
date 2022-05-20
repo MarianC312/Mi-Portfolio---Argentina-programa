@@ -1,6 +1,6 @@
 <div id="sobremi" class="my-5 bg-seccion position-relative">
     <app-titulo [titulo]="'Sobre Mi'"></app-titulo>
-    <div class="d-flex align-items-center w-100 p-5">
+    <div *ngIf="!loading else loadingContainer" class="d-flex align-items-center w-100 p-5">
         <div class="d-flex p-5 flex-column justify-content-center align-items-center">
             <div *ngIf="(personaData.imagen !== null); else userIcon" class="my-3 d-flex justify-content-center align-items-center">
                 <img #userImg src="{{personaData.imagen}}">
@@ -22,4 +22,7 @@
             </div>
         </div>
     </div>
+    <ng-template #loadingContainer>
+        <app-loading></app-loading>
+    </ng-template>
 </div>

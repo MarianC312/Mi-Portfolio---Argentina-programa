@@ -1,13 +1,19 @@
 <div id="skills" class="my-5 bg-seccion position-relative p-5">
     <app-titulo [titulo]="'Mis habilidades'"></app-titulo>
-    <div class="d-flex justify-content-evenly flex-wrap py-5">
-        <div *ngFor="let habilidad of skillData" class="d-flex position-relative">
-            <app-habilidad [id]="habilidad.id" [titulo]="habilidad.titulo" [imagen]="habilidad.imagen" [nivel]="habilidad.nivel" (eliminar)="eliminarHabilidad(habilidad.id)" [guardar]="editarHabilidad"></app-habilidad>
+    <div *ngIf="!loading else loadingContainer">
+        <div class="d-flex justify-content-evenly flex-wrap py-5">
+            <div *ngFor="let habilidad of skillData" class="d-flex position-relative">
+                <app-habilidad [id]="habilidad.id" [titulo]="habilidad.titulo" [imagen]="habilidad.imagen" [nivel]="habilidad.nivel" (eliminar)="eliminarHabilidad(habilidad.id)" [guardar]="editarHabilidad"></app-habilidad>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center align-items-center my-3">
+            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#nuevaHabilidadModal"><i class="fa fa-plus"></i> Agregar habilidad</button>
         </div>
     </div>
-</div>
-<div class="d-flex justify-content-center align-items-center my-3">
-    <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#nuevaHabilidadModal"><i class="fa fa-plus"></i> Agregar habilidad</button>
+
+    <ng-template #loadingContainer>
+        <app-loading></app-loading>
+    </ng-template>
 </div>
 <div class="modal fade" id="nuevaHabilidadModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
