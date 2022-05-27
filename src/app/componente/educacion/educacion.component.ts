@@ -30,7 +30,7 @@ export class EducacionComponent implements OnInit {
         this.data = this.educacionService.educacionData;
       });
     }else{
-      this.loading = true;
+      this.loading = false;
     }
     this.form = this.formBuilder.group(
       {

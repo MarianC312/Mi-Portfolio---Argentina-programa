@@ -29,6 +29,8 @@ export class SkillComponent implements OnInit {
       ).subscribe(() => {
         this.skillData = this.skillService.skillData;
       });
+    }else{
+      this.loading = false;
     }
     this.form = this.formBuilder.group(
       {

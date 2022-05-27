@@ -29,6 +29,8 @@ export class ProyectoComponent implements OnInit {
       ).subscribe(() => {
         this.proyectoData = this.proyectoService.proyectoData;
       });
+    }else{
+      this.loading = false;
     }
     this.form = this.formBuilder.group(
       {

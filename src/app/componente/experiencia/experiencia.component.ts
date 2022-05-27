@@ -27,6 +27,8 @@ export class ExperienciaComponent implements OnInit {
       ).subscribe(() => {
         this.experienciaData = this.experienciaService.experienciaData;
       });
+    }else{
+      this.loading = false;
     }
   }
 
