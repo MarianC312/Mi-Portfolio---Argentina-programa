@@ -68,6 +68,9 @@ body {
     background-color: var(--bg-seccion) !important;
     color: var(--text-seccion) !important;
     margin-top: 10rem;
+    max-width: 1400px;
+    width: calc(100% - 5rem);
+    min-width: 500px;
 }
 
 .modal-content {
