@@ -4,11 +4,12 @@
     <div *ngIf="!loading else loadingContainer">
         <div class="py-5">
             <div *ngFor="let educacion of data" class="w-100">
-                <app-educacion-container [titulo]="educacion.titulo" [periodo]="educacion.periodo" [descripcion]="educacion.descripcion" [id]="educacion.id" (eliminar)="eliminarEducacion(educacion.id)" [editar]="editarContenido" [guardar]="editarEducacion" [descartar]="descartarEditarContenido"></app-educacion-container>
+                <app-educacion-container [isAdmin]="isAdmin" [titulo]="educacion.titulo" [periodo]="educacion.periodo" [descripcion]="educacion.descripcion" [id]="educacion.id" (eliminar)="eliminarEducacion(educacion.id)" [editar]="editarContenido" [guardar]="editarEducacion"
+                    [descartar]="descartarEditarContenido"></app-educacion-container>
             </div>
         </div>
 
-        <div class="d-flex justify-content-center align-items-center my-3">
+        <div class="d-flex justify-content-center align-items-center my-3" *ngIf="isAdmin">
             <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#nuevaEducacionModal"><i class="fa fa-plus"></i> Agregar educación</button>
         </div>
     </div>

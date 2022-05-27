@@ -1,8 +1,8 @@
 <div class="card w-100 mb-2">
-    <button type="button " class="btn btn-danger delete" [ngClass]="{'d-none': this.contentEditable === false}" (click)="this.eliminar.emit();"><i class="fa fa-trash"></i></button>
+    <button type="button" class="btn btn-danger delete" *ngIf="isAdmin" [ngClass]="{'d-none': this.contentEditable === false}" (click)="this.eliminar.emit();"><i class="fa fa-trash"></i></button>
     <div class="d-flex align-items-center">
         <div class="d-flex justify-content-end" style="height: 50px;">
-            <div class="btn-group" role="group" aria-label="Basic example">
+            <div class="btn-group" role="group" aria-label="Basic example" *ngIf="isAdmin">
                 <button type="button" class="btn " [ngClass]="{'btn-link': this.contentEditable === false, 'btn-primary': contentEditable === true}" (click)="check()">
                   <i class="fa " [ngClass]="{'fa-pencil': this.contentEditable === false, 'fa-floppy-o': this.contentEditable === true}"></i>
                 </button>

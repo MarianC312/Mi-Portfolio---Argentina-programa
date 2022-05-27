@@ -11,8 +11,8 @@
     box-shadow: none;
 }
 
-.navbar.bg-portfolio .navbar-nav .nav-item .nav-link:not(.login):active::after,
-.navbar.bg-portfolio .navbar-nav .nav-item .nav-link:not(.login):focus::after {
+.navbar.bg-portfolio .navbar-nav .nav-item .nav-link:not(.login, .logout):active::after,
+.navbar.bg-portfolio .navbar-nav .nav-item .nav-link:not(.login, .logout):focus::after {
     /*font-weight: bold;*/
     /*text-decoration: underline;*/
     font-family: FontAwesome;
@@ -21,7 +21,7 @@
     transition-duration: .5s;
 }
 
-.navbar.bg-portfolio .navbar-nav .nav-item .nav-link:not(.login):hover::after {
+.navbar.bg-portfolio .navbar-nav .nav-item .nav-link:not(.login, .logout):hover::after {
     /*font-weight: bold;*/
     /*text-decoration: underline;*/
     font-family: FontAwesome;
@@ -39,4 +39,10 @@
 .btn.nav-link.login:hover {
     background-color: #ba130d;
     transition-duration: .5s;
+}
+
+.btn.nav-link.logout {
+    font-size: .8rem;
+    line-height: .8rem;
+    text-align: right;
 }

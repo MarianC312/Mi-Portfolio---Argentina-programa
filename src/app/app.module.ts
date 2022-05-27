@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './componente/header/header.component';
 import { BannerComponent } from './componente/banner/banner.component';
-import { LoginComponent } from './componente/login/login.component';
+import { LoginComponent } from './auth/login.component';
 import { PortfolioComponent } from './componente/portfolio/portfolio.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -24,7 +24,10 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { HabilidadComponent } from './componente/skill/habilidad/habilidad.component';
 import { ProyectoCardComponent } from './componente/proyecto/proyecto-card/proyecto-card.component';
 import { LoadingComponent } from './componente/loading/loading.component';
-
+import { RegistroComponent } from './auth/registro.component';
+import { interceptorProvider } from './servicio/interceptor/prod-interceptor.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +48,8 @@ import { LoadingComponent } from './componente/loading/loading.component';
     EducacionContainerComponent,
     HabilidadComponent,
     ProyectoCardComponent,
-    LoadingComponent
+    LoadingComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
@@ -72,9 +76,15 @@ import { LoadingComponent } from './componente/loading/loading.component';
       titleFontWeight: "bold",
       subtitleFontSize: "14",
       titleColor: "#F05D23"
+    }),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-center',
+      preventDuplicates: true
     })
   ],
-  providers: [],
+  providers: [interceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

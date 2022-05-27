@@ -17,6 +17,7 @@ export class CardComponent implements OnInit {
   @Input() logo: String;
   @Input() periodo: String;
   @Input() titulo: String;
+  @Input() isAdmin: boolean = false;
 
   public contentEditable = false;
 

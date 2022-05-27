@@ -10,7 +10,7 @@ import { tap } from 'rxjs';
 export class SkillServiceService {
 
   private data: SkillModel[] = [];
-  private url: String = "https://immense-meadow-61678.herokuapp.com";
+  private url: String = "https://immense-meadow-61678.herokuapp.com/habilidad";
 
   constructor(private HttpClient: HttpClient, private personaService: PersonaServiceService) { }
 
@@ -23,7 +23,7 @@ export class SkillServiceService {
   }
 
   fetchSkillData(force: boolean = false) {
-    return this.HttpClient.get<[]>(this.url + '/ver/habilidad').pipe(
+    return this.HttpClient.get<[]>(this.url + '/ver').pipe(
       tap(response => {
         let respuesta: SkillModel[]  = response;
         this.data = respuesta.filter(data => data.persona.id == this.personaService.getId());
@@ -32,7 +32,7 @@ export class SkillServiceService {
   }
 
   eliminarSkill(id: number){
-    this.HttpClient.delete(this.url + '/eliminar/habilidad?habilidad_id=' + id).subscribe( response => {
+    this.HttpClient.delete(this.url + '/eliminar?habilidad_id=' + id).subscribe( response => {
       if(response){
         this.data = this.data.filter( data => data.id != id);
       }else{
@@ -42,7 +42,7 @@ export class SkillServiceService {
   }
 
   agregarSkill(skill: SkillModel){
-    this.HttpClient.post(this.url + '/nueva/habilidad?persona_id=' + this.personaService.getId(), skill).subscribe( response => {
+    this.HttpClient.post(this.url + '/nueva?persona_id=' + this.personaService.getId(), skill).subscribe( response => {
       if(response){
         this.data.push(response);
       }else{
@@ -52,7 +52,7 @@ export class SkillServiceService {
   }
 
   editarSkill(skill: SkillModel){
-    this.HttpClient.put(this.url + '/editar/habilidad?persona_id=' + this.personaService.getId(), skill).subscribe( response => {
+    this.HttpClient.put(this.url + '/editar?persona_id=' + this.personaService.getId(), skill).subscribe( response => {
       if(response){
         this.data = this.data.filter( data => data != response);
         this.data.push(response);

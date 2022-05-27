@@ -19,6 +19,7 @@ export class AptitudComponent implements OnInit {
   @Input() editar: () => void;
   @Input() descartar: () => void;
   @Input() guardar: (sobremi: SobremiModel) => void;
+  @Input() isAdmin: boolean = false;
 
   @Output("eliminar") eliminar: EventEmitter<any> = new EventEmitter();
 

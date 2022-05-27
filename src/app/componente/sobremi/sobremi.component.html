@@ -1,9 +1,9 @@
 <div class="w-auto d-flex flex-wrap">
     <div *ngFor="let aptitud of data" class="">
-        <app-aptitud [titulo]="aptitud.titulo" [icono]="aptitud.icono" [id]="aptitud.id" (eliminar)="eliminarAptitud(aptitud.id)" [editar]="editarContenido" [guardar]="editarAptitud" [descartar]="descartarEditarContenido"></app-aptitud>
+        <app-aptitud [isAdmin]="isAdmin" [titulo]="aptitud.titulo" [icono]="aptitud.icono" [id]="aptitud.id" (eliminar)="eliminarAptitud(aptitud.id)" [editar]="editarContenido" [guardar]="editarAptitud" [descartar]="descartarEditarContenido"></app-aptitud>
     </div>
 </div>
-<div class="d-flex justify-content-center align-items-center my-3">
+<div class="d-flex justify-content-center align-items-center my-3" *ngIf="isAdmin">
     <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#nuevaAptitudModal"><i class="fa fa-plus"></i> Agregar aptitud</button>
 </div>
 <div class="modal fade" id="nuevaAptitudModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -35,7 +35,7 @@
                                 <small>El título es un campo obligatorio.</small>
                             </p>
                             <p *ngIf="Titulo?.errors?.['minlength']">
-                                <small>El título debe tener al menos 8 caracteres.</small>
+                                <small>El título debe tener al menos 3 caracteres.</small>
                             </p>
                         </div>
                     </div>

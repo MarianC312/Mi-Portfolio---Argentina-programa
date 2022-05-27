@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SobremiModel } from '../../modelo/sobremi-model.model';
 import { SobremiServiceService } from '../../servicio/sobremi-service.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -15,6 +15,7 @@ export class SobremiComponent implements OnInit {
   contentEditable: boolean = false;
   nuevaAptitud: boolean = false;
   form:FormGroup;
+  @Input() isAdmin: boolean = false;
   public listaIcono: String[] = ["code","music","heart","star","check","times","cog","home","flag","book","camera","picture-o","play","trophy","exclamation","users","globe","suitcase","smile-o","thumbs-up"]
 
   constructor(private formBuilder: FormBuilder, private sobremiService: SobremiServiceService) { }
@@ -29,7 +30,7 @@ export class SobremiComponent implements OnInit {
     this.form = this.formBuilder.group(
       {
         icono:['', [Validators.required]],
-        titulo:['', [Validators.required,Validators.minLength(8)]]
+        titulo:['', [Validators.required,Validators.minLength(3)]]
       }
     );
   }

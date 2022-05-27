@@ -10,12 +10,12 @@ export class PersonaServiceService {
 
   private id: number = 1;
   private data: PersonaModel = null;
-  private url: string = "https://immense-meadow-61678.herokuapp.com";
+  private url: string = "https://immense-meadow-61678.herokuapp.com/persona";
 
   constructor(private HttpClient: HttpClient) { }
 
   fetchPersonaData(){
-    return this.HttpClient.get(this.url + '/ver/persona?persona_id=' + this.id).pipe(
+    return this.HttpClient.get(this.url + '/ver/id?persona_id=' + this.id).pipe(
       tap(response => {
         let respuesta: PersonaModel = response;
         this.data = respuesta;

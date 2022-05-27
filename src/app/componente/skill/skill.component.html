@@ -3,10 +3,10 @@
     <div *ngIf="!loading else loadingContainer">
         <div class="d-flex justify-content-evenly flex-wrap py-5">
             <div *ngFor="let habilidad of skillData" class="d-flex position-relative">
-                <app-habilidad [id]="habilidad.id" [titulo]="habilidad.titulo" [imagen]="habilidad.imagen" [nivel]="habilidad.nivel" (eliminar)="eliminarHabilidad(habilidad.id)" [guardar]="editarHabilidad"></app-habilidad>
+                <app-habilidad [isAdmin]="isAdmin" [id]="habilidad.id" [titulo]="habilidad.titulo" [imagen]="habilidad.imagen" [nivel]="habilidad.nivel" (eliminar)="eliminarHabilidad(habilidad.id)" [guardar]="editarHabilidad"></app-habilidad>
             </div>
         </div>
-        <div class="d-flex justify-content-center align-items-center my-3">
+        <div class="d-flex justify-content-center align-items-center my-3" *ngIf="isAdmin">
             <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#nuevaHabilidadModal"><i class="fa fa-plus"></i> Agregar habilidad</button>
         </div>
     </div>

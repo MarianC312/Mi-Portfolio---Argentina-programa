@@ -80,3 +80,7 @@ body {
     outline: 0;
     box-shadow: none !important;
 }
+
+.toast-top-center {
+    top: 1rem !important;
+}

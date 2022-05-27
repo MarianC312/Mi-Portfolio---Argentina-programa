@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ProyectoModel } from '../../modelo/proyecto-model.model';
 import { ProyectoServiceService } from '../../servicio/proyecto-service.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -16,6 +16,7 @@ export class ProyectoComponent implements OnInit {
   nuevaProyecto: boolean = false;
   form:FormGroup;
   loading: boolean = false;
+  @Input() isAdmin: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private proyectoService: ProyectoServiceService) { }
 

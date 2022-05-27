@@ -6,8 +6,8 @@
             <app-proyecto-card *ngFor="let proyecto of proyectoData" [titulo]="proyecto.titulo" [id]="proyecto.id" [imagen]="proyecto.imagen" [descripcion]="proyecto.descripcion" [url_deploy]="proyecto.url_deploy" [url_git]="proyecto.url_git" (eliminar)="eliminarProyecto(proyecto.id)"
                 [guardar]="editarProyecto"></app-proyecto-card>
         </div>
-        <div class="d-flex justify-content-center align-items-center my-3">
-            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#nuevoProyectoModal"><i class="fa fa-plus"></i> Agregar habilidad</button>
+        <div *ngIf="isAdmin" class="d-flex justify-content-center align-items-center my-3">
+            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#nuevoProyectoModal"><i class="fa fa-plus"></i> Agregar proyecto</button>
         </div>
     </div>
 

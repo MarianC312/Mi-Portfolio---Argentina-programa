@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SkillModel } from '../../modelo/skill-model.model';
 import { SkillServiceService } from '../../servicio/skill-service.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -16,6 +16,7 @@ export class SkillComponent implements OnInit {
   nuevaSkill: boolean = false;
   form:FormGroup;
   loading: boolean = false;
+  @Input() isAdmin: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private skillService: SkillServiceService) { }
 

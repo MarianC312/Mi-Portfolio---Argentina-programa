@@ -10,7 +10,7 @@ import { PersonaServiceService } from './persona-service.service';
 export class SobremiServiceService {
 
   private data: SobremiModel[] = [];
-  private url: string = "https://immense-meadow-61678.herokuapp.com";
+  private url: string = "https://immense-meadow-61678.herokuapp.com/sobremi";
 
   constructor(private HttpClient: HttpClient, private personaService: PersonaServiceService) { }
 
@@ -23,7 +23,7 @@ export class SobremiServiceService {
   }
 
   fetchSobremiData(force: boolean = false) {
-    return this.HttpClient.get<[]>(this.url + '/ver/sobremi').pipe(
+    return this.HttpClient.get<[]>(this.url + '/ver').pipe(
       tap(response => {
         let respuesta: SobremiModel[]  = response;
         this.data = respuesta.filter(data => data.persona.id == this.personaService.getId());
@@ -32,7 +32,7 @@ export class SobremiServiceService {
   }
 
   eliminarAptitud(id: number){
-    this.HttpClient.delete(this.url + '/eliminar/sobremi?sobremi_id=' + id).subscribe( response => {
+    this.HttpClient.delete(this.url + '/eliminar?sobremi_id=' + id).subscribe( response => {
       if(response){
         this.data = this.data.filter( data => data.id != id);
       }else{
@@ -42,7 +42,7 @@ export class SobremiServiceService {
   }
 
   editarAptitud(aptitud: SobremiModel){
-    this.HttpClient.put(this.url + '/editar/sobremi?persona_id=' + this.personaService.getId(), aptitud).subscribe( response => {
+    this.HttpClient.put(this.url + '/editar?persona_id=' + this.personaService.getId(), aptitud).subscribe( response => {
       if(response){
         console.log(response);
         this.data = this.data.filter( data => data != response);
@@ -52,7 +52,7 @@ export class SobremiServiceService {
   }
 
   agregarAptitud(aptitud: SobremiModel){
-    this.HttpClient.post(this.url + '/nueva/sobremi?persona_id=' + this.personaService.getId(), aptitud).subscribe( response => {
+    this.HttpClient.post(this.url + '/nueva?persona_id=' + this.personaService.getId(), aptitud).subscribe( response => {
       if(response){
         this.data.push(response);
       }

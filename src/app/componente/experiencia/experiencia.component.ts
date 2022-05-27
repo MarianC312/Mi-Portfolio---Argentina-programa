@@ -14,6 +14,7 @@ export class ExperienciaComponent implements OnInit {
   contentEditable: boolean = false;
   nuevaExperiencia: boolean = false;
   loading: boolean = false;
+  @Input() isAdmin: boolean = false;
 
   constructor(private experienciaService: ExperienciaServiceService) { }
 

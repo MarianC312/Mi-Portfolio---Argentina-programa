@@ -1,5 +1,5 @@
 <div class="d-flex my-2 mx-2 align-items-center" style="min-width: 15rem;" [ngClass]="{'w-100': this.contentEditable === true}">
-    <div class="btn-group" style="height: 35px;" role="group" aria-label="Basic example">
+    <div class="btn-group" style="height: 35px;" role="group" aria-label="Basic example" *ngIf="isAdmin">
         <button type="button" class="btn btn-sm btn-link" data-bs-toggle="modal" [attr.data-bs-target]="'#apt-' + id + '-modal'"><i class="fa fa-pencil"></i></button>
         <button type="button" class="btn btn-sm btn-link" (click)="this.eliminar.emit()"><i class="fa fa-times"></i></button>
     </div>

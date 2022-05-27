@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ExperienciaServiceService } from '../../../servicio/experiencia-service.service';
 
@@ -10,6 +10,7 @@ import { ExperienciaServiceService } from '../../../servicio/experiencia-service
 export class NuevaExperienciaComponent implements OnInit {
 
   form:FormGroup;
+  @Input() isAdmin: boolean = false;
 
   constructor(private formBuilder:FormBuilder, private experienciaService:ExperienciaServiceService) {
     this.form = this.formBuilder.group(

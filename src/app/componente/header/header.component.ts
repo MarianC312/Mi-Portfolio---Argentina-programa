@@ -1,5 +1,7 @@
+import { Token } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { TokenService } from '../../servicio/token.service';
 
 @Component({
   selector: 'app-header',
@@ -8,26 +10,43 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   private fragment: string;
-  constructor(private route: ActivatedRoute) {}
+  isLogged: boolean = false;
+  nombreUsuario: string;
+  constructor(private route: ActivatedRoute, private tokenService: TokenService) {}
 
   ngOnInit(): void {
     this.route.fragment.subscribe(fragment => {
       this.fragment = fragment;
     });
+    if(this.tokenService.getToken()){
+      this.isLogged = true;
+      this.nombreUsuario = this.tokenService.getUserName();
+    }else{
+      this.isLogged = false;
+    }
   }
 
   scroll(id: string) {
-    let yOffset = -200;
+    console.log(id);
+    let yOffset = -70;
     let element = document.getElementById(id);
     let y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
 
     window.scrollTo({top: y, behavior: 'smooth'});
 
+
+    /*
     //let el = document.getElementById(id);
     //el.scrollIntoView({behavior: 'smooth'});
+    */
   }
 
   ngAfterViewInit(): void {
     this.scroll(this.fragment);
+  }
+
+  onLogOut(): void{
+    this.tokenService.logOut();
+    window.location.reload();
   }
 }

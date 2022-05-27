@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { EducacionModel } from '../../modelo/educacion-model.model';
 import { EducacionServiceService } from '../../servicio/educacion-service.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -16,6 +16,7 @@ export class EducacionComponent implements OnInit {
   nuevaEducacion: boolean = false;
   form:FormGroup;
   loading: boolean = false;
+  @Input() isAdmin: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private educacionService: EducacionServiceService) { }
 

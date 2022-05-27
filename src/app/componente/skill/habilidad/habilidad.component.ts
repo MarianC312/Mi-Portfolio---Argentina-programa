@@ -18,6 +18,7 @@ export class HabilidadComponent implements OnInit {
   @Input() editar: () => void;
   @Input() descartar: () => void;
   @Input() guardar: (habilidad: SkillModel) => void;
+  @Input() isAdmin: boolean = false;
 
   @Output("eliminar") eliminar: EventEmitter<any> = new EventEmitter();
 

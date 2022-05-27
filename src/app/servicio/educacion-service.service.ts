@@ -10,7 +10,7 @@ import { tap } from 'rxjs';
 export class EducacionServiceService {
 
   private data: EducacionModel[] = [];
-  private url: String = "https://immense-meadow-61678.herokuapp.com";
+  private url: String = "https://immense-meadow-61678.herokuapp.com/educacion";
 
   constructor(private HttpClient: HttpClient, private personaService: PersonaServiceService) { }
 
@@ -23,7 +23,7 @@ export class EducacionServiceService {
   }
 
   fetchEducacionData(force: boolean = false) {
-    return this.HttpClient.get<[]>(this.url + '/ver/educacion').pipe(
+    return this.HttpClient.get<[]>(this.url + '/ver').pipe(
       tap(response => {
         let respuesta: EducacionModel[]  = response;
         this.data = respuesta.filter(data => data.persona.id == this.personaService.getId());
@@ -32,7 +32,7 @@ export class EducacionServiceService {
   }
 
   eliminarEducacion(id: number){
-    this.HttpClient.delete(this.url + '/eliminar/educacion?educacion_id=' + id).subscribe( response => {
+    this.HttpClient.delete(this.url + '/eliminar?educacion_id=' + id).subscribe( response => {
       if(response){
         this.data = this.data.filter( data => data.id != id);
       }else{
@@ -42,7 +42,7 @@ export class EducacionServiceService {
   }
 
   agregarEducacion(edu: EducacionModel){
-    this.HttpClient.post(this.url + '/nueva/educacion?persona_id=' + this.personaService.getId(), edu).subscribe( response => {
+    this.HttpClient.post(this.url + '/nueva?persona_id=' + this.personaService.getId(), edu).subscribe( response => {
       if(response){
         this.data.push(response);
       }else{
@@ -52,7 +52,7 @@ export class EducacionServiceService {
   }
 
   editarEducacion(edu: EducacionModel){
-    this.HttpClient.put(this.url + '/editar/educacion?persona_id=' + this.personaService.getId(), edu).subscribe( response => {
+    this.HttpClient.put(this.url + '/editar?persona_id=' + this.personaService.getId(), edu).subscribe( response => {
       if(response){
         this.data = this.data.filter( data => data != response);
         this.data.push(response);

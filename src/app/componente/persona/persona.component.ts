@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { finalize } from 'rxjs';
 import { PersonaModel } from '../../modelo/persona-model.model';
 import { PersonaServiceService } from '../../servicio/persona-service.service';
@@ -12,6 +12,7 @@ export class PersonaComponent implements OnInit {
 
   personaData?: PersonaModel;
   loading: boolean = false;
+  @Input() isAdmin: boolean = false;
 
   constructor(private personaService: PersonaServiceService) { }
 
@@ -24,6 +25,8 @@ export class PersonaComponent implements OnInit {
       ).subscribe(() => {
         this.personaData = this.personaService.personaData;
       });
+    }else{
+      this.loading = false;
     }
   }
 

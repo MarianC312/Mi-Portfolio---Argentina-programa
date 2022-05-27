@@ -10,7 +10,7 @@ import { PersonaServiceService } from './persona-service.service';
 export class ExperienciaServiceService {
 
   private data: ExperienciaModel[] = [];
-  private url: String = "https://immense-meadow-61678.herokuapp.com";
+  private url: String = "https://immense-meadow-61678.herokuapp.com/experiencia";
 
   constructor(private HttpClient: HttpClient, private personaService: PersonaServiceService) {}
 
@@ -23,7 +23,7 @@ export class ExperienciaServiceService {
   }
 
   fetchExperienciaData(force: boolean = false) {
-    return this.HttpClient.get<[]>(this.url + '/ver/experiencias').pipe(
+    return this.HttpClient.get<[]>(this.url + '/ver').pipe(
       tap(response => {
         let respuesta: ExperienciaModel[]  = response;
         this.data = respuesta.filter(data => data.persona.id == this.personaService.getId());
@@ -32,7 +32,7 @@ export class ExperienciaServiceService {
   }
 
   eliminarExperiencia(id: number){
-    this.HttpClient.delete(this.url + '/eliminar/experiencia?experiencia_id=' + id).subscribe( response => {
+    this.HttpClient.delete(this.url + '/eliminar?experiencia_id=' + id).subscribe( response => {
       if(response){
         this.data = this.data.filter( data => data.id != id);
       }else{
@@ -42,7 +42,7 @@ export class ExperienciaServiceService {
   }
 
   agregarExperiencia(exp: ExperienciaModel){
-    this.HttpClient.post(this.url + '/nueva/experiencia?persona_id=' + this.personaService.getId(), exp).subscribe( response => {
+    this.HttpClient.post(this.url + '/nueva?persona_id=' + this.personaService.getId(), exp).subscribe( response => {
       if(response){
         this.data.push(response);
       }
@@ -50,7 +50,7 @@ export class ExperienciaServiceService {
   }
 
   editarExperiencia(exp: ExperienciaModel){
-    this.HttpClient.put(this.url + '/editar/experiencia?persona_id=' + this.personaService.getId(), exp).subscribe( response => {
+    this.HttpClient.put(this.url + '/editar?persona_id=' + this.personaService.getId(), exp).subscribe( response => {
       if(response){
         console.log(response);
         this.data = this.data.filter( data => data != response);
