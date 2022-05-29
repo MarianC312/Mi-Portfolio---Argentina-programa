@@ -10,7 +10,7 @@ import { JwtDTO } from '../modelo/jwt-dto';
 })
 export class AuthService {
 
-  authURL = "http://localhost:8080/auth";
+  authURL = "https://immense-meadow-61678.herokuapp.com/auth";
 
   constructor(private HttpClient: HttpClient) { }
 

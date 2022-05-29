@@ -1,25 +1,27 @@
-<div class="card position-relative" style="width: 15rem;">
-    <div class="btn-group" *ngIf="isAdmin" style="height: 35px; position: absolute; right: .5rem; top: .5rem;" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-sm btn-link" data-bs-toggle="modal" [attr.data-bs-target]="'#proy-' + id + '-modal'"><i class="fa fa-pencil"></i></button>
-        <button type="button" class="btn btn-sm btn-link" (click)="this.eliminar.emit()"><i class="fa fa-times"></i></button>
-    </div>
-    <div *ngIf="imagen.length > 0; else imagenNull" class="my-3 d-flex justify-content-center align-items-center">
-        <img src="{{imagen}}" class="card-img-top" alt="{{titulo}}">
-    </div>
-    <ng-template #imagenNull>
-        <div class="d-flex w-100 justify-content-center align-items-center" style="height: 12rem">
-            <i class="fa fa-picture-o fa-5x" style="color: var(--text-primario); opacity: 0.3;" title="No se cargó una imagen."></i>
+<div style="background-color: white !important;">
+    <div class="card position-relative" style="width: 15rem;">
+        <div class="btn-group" *ngIf="isAdmin" style="height: 35px; position: absolute; right: .5rem; top: .5rem;" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-sm btn-link" data-bs-toggle="modal" [attr.data-bs-target]="'#proy-' + id + '-modal'"><i class="fa fa-pencil"></i></button>
+            <button type="button" class="btn btn-sm btn-link" (click)="this.eliminar.emit()"><i class="fa fa-times"></i></button>
         </div>
-    </ng-template>
-    <div class="card-body">
-        <h5 class="card-title">{{titulo}}</h5>
-        <p class="card-text">{{descripcion}}</p>
-        <div class="d-flex justify-content-end mt-2">
-            <div *ngIf="url_git != null" class="m-1">
-                <button type="button" class="btn btn-primary"><i class="fa fa-github"></i></button>
+        <div *ngIf="imagen.length > 0; else imagenNull" class="my-3 d-flex justify-content-center align-items-center">
+            <img src="{{imagen}}" class="card-img-top" alt="{{titulo}}">
+        </div>
+        <ng-template #imagenNull>
+            <div class="d-flex w-100 justify-content-center align-items-center" style="height: 12rem">
+                <i class="fa fa-picture-o fa-5x" style="color: var(--text-primario); opacity: 0.3;" title="No se cargó una imagen."></i>
             </div>
-            <div *ngIf="url_deploy != null" class="m-1">
-                <button type="button" class="btn btn-primary"><i class="fa fa-external-link"></i></button>
+        </ng-template>
+        <div class="card-body">
+            <h5 class="card-title">{{titulo}}</h5>
+            <p class="card-text">{{descripcion}}</p>
+            <div class="d-flex justify-content-end mt-2">
+                <div *ngIf="url_git != null" class="m-1">
+                    <button type="button" class="btn btn-primary"><i class="fa fa-github"></i></button>
+                </div>
+                <div *ngIf="url_deploy != null" class="m-1">
+                    <button type="button" class="btn btn-primary"><i class="fa fa-external-link"></i></button>
+                </div>
             </div>
         </div>
     </div>

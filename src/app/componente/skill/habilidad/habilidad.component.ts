@@ -19,6 +19,8 @@ export class HabilidadComponent implements OnInit {
   @Input() descartar: () => void;
   @Input() guardar: (habilidad: SkillModel) => void;
   @Input() isAdmin: boolean = false;
+  nivelTexto: string;
+
 
   @Output("eliminar") eliminar: EventEmitter<any> = new EventEmitter();
 
@@ -34,11 +36,29 @@ export class HabilidadComponent implements OnInit {
         imagen:['', []]
       }
     );
+    this.actualizarNivelTexto();
   }
 
   get Titulo() { return this.form.get('titulo'); }
   get Nivel() { return this.form.get('nivel'); }
   get Imagen() { return this.form.get('imagen'); }
+
+  actualizarNivelTexto(): void {
+    switch(true){
+      case (this.nivel < 35):
+        this.nivelTexto = 'Principante';
+      break;
+      case (this.nivel < 70):
+        this.nivelTexto = 'Intermedio';
+      break;
+      case (this.nivel >= 70):
+        this.nivelTexto = 'Avanzado';
+      break;
+      default:
+        this.nivelTexto = '';
+      break;
+    }
+  }
 
   onEnviar(event:Event){
     event.preventDefault;
@@ -49,6 +69,7 @@ export class HabilidadComponent implements OnInit {
       imagen: this.form.value.imagen,
     };
     this.guardar(habilidad);
+    this.actualizarNivelTexto();
   }
 
 }

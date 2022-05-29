@@ -1,4 +1,4 @@
-<div id="sobremi" class="my-5 bg-seccion position-relative">
+<div id="sobremi" class="bg-seccion position-relative">
     <app-titulo [titulo]="'Sobre Mi'"></app-titulo>
     <div *ngIf="!loading else loadingContainer" class="d-flex align-items-center w-100 p-5">
         <div class="d-flex p-5 flex-column justify-content-center align-items-center">
@@ -8,10 +8,6 @@
             <ng-template #userIcon>
                 <i class="fa fa-user fa-5x"></i>
             </ng-template>
-
-            <div class="fw-bold text-wrap">
-                <span id="apellido">{{personaData.apellido}}</span>, <span id="nombre">{{personaData.nombre}}</span>
-            </div>
         </div>
         <div class="ms-3 w-100">
             <h5 class="text-muted text-uppercase fw-bold text-wrap">

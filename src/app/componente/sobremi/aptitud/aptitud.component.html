@@ -49,9 +49,6 @@
                             <p *ngIf="Titulo?.hasError('required')">
                                 <small>El título es un campo obligatorio.</small>
                             </p>
-                            <p *ngIf="Titulo?.errors?.['minlength']">
-                                <small>El título debe tener al menos 8 caracteres.</small>
-                            </p>
                         </div>
                     </div>
                 </form>

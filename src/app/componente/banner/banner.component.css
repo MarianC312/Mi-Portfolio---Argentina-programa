@@ -1,16 +1,39 @@
 .banner-container {
     width: 100%;
     padding: 2rem;
-    min-height: 50%;
+    min-height: 35rem;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: var(--bg-banner);
     position: relative;
     overflow: hidden;
-    margin-top: 10rem;
+    z-index: 1;
 }
 
+.banner-container::after {
+    content: '';
+    background: no-repeat center/80% var(--banner-img);
+    opacity: 0.25;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: 1
+}
+
+#banner {
+    z-index: 100;
+    text-shadow: 0.75px 1.25px 1.25px var(--text-primario)
+}
+
+.main-title {
+    font-weight: bold !important;
+}
+
+
+/*
 .banner-container::after {
     content: "";
     background-color: var(--bg-seccion);
@@ -21,3 +44,4 @@
     height: 250px;
     transform: rotate(20deg);
 }
+*/

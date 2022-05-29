@@ -12,3 +12,7 @@
 .card-text {
     color: var(--text-black) !important;
 }
+
+.card {
+    background-color: rgba(var(--bg-portfolio-rgb), .25) !important;
+}

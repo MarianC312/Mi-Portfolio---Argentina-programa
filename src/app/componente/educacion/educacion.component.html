@@ -1,6 +1,5 @@
-<div id="educacion" class="p-5 bg-seccion position-relative">
+<div id="educacion" class="bg-seccion position-relative">
     <app-titulo [titulo]="'Mi formación académica'"></app-titulo>
-
     <div *ngIf="!loading else loadingContainer">
         <div class="py-5">
             <div *ngFor="let educacion of data" class="w-100">

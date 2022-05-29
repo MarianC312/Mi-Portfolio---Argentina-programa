@@ -33,7 +33,7 @@ export class AptitudComponent implements OnInit {
     this.form = this.formBuilder.group(
       {
         icono:['', [Validators.required]],
-        titulo:['', [Validators.required,Validators.minLength(8)]]
+        titulo:['', [Validators.required]]
       }
     );
   }

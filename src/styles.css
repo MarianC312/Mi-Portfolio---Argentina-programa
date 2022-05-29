@@ -1,7 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 
+@font-face {
+    font-family: "apercu_mono";
+    src: url("./assets/font/FontsFree-Net-Apercu-MonoBold.ttf");
+}
+
+@font-face {
+    font-family: "apercu_bold";
+    src: url("./assets/font/FontsFree-Net-ApercuBold.ttf");
+}
+
+@font-face {
+    font-family: "apercu_regular";
+    src: url("./assets/font/FontsFree-Net-ApercuRegular.ttf");
+}
+
 :root {
     --bg-portfolio: #F05D23;
+    --bg-portfolio-rgb: 240, 93, 35;
     --text-primario: #F05D23;
     --bg-primario: #F05D23;
     --bg-primario-hover: 240, 93, 35;
@@ -15,11 +31,13 @@
     --linea-naranja: #F05D23;
     --primario: #CCCCCC;
     --primario-hover: #F05D23;
+    --banner-img: url('./assets/banner.png');
 }
 
 body {
+    font-family: 'apercu_regular', sans-serif !important;
     scroll-behavior: smooth;
-    background-color: var(--bg-seccion) !important;
+    background-color: rgba(var(--bg-portfolio-rgb), .25) !important;
 }
 
 *[contenteditable="true"] {
@@ -64,13 +82,14 @@ body {
     color: var(--titulo-seccion);
 }
 
-.bg-seccion {
+.bg-seccion,
+.banner-container {
     background-color: var(--bg-seccion) !important;
     color: var(--text-seccion) !important;
-    margin-top: 10rem;
-    max-width: 1400px;
-    width: calc(100% - 5rem);
-    min-width: 500px;
+    max-width: 1200px !important;
+    width: calc(100%) !important;
+    min-width: 500px !important;
+    margin-bottom: 1rem;
 }
 
 .modal-content {

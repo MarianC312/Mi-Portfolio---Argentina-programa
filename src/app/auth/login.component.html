@@ -1,34 +1,39 @@
 <app-header></app-header>
-<div id="experiencias" class="pt-5 my-5 bg-seccion position-relative">
-    <div class="text-center h2" *ngIf="isLogged; else loginFormContainer">
-        Ya iniciaste sesión.
+<div class="container-general mt-5">
+    <div id="login" class="bg-seccion position-relative">
+        <app-titulo [titulo]="'Iniciar sesión'"></app-titulo>
+        <div class="text-center h2" *ngIf="isLogged; else loginFormContainer">
+            Ya iniciaste sesión.
+        </div>
+        <ng-template #loginFormContainer>
+            <div class="py-5">
+                <form [formGroup]="form" class="m-5 px-5" (ngSubmit)="onLogin()" #f="ngForm" novalidate>
+                    <div class="mb-3">
+                        <label for="nombreUsuario" class="form-label"><i class="fa fa-user"></i> Nombre de Usuario</label>
+                        <input type="text" [ngClass]="{'is-invalid': NombreUsuario?.errors && NombreUsuario?.touched, 'is-valid': !NombreUsuario?.errors && NombreUsuario?.touched}" formControlName="nombreUsuario" [(ngModel)]="nombreUsuario" class="form-control" id="nombreUsuario">
+                        <div *ngIf="NombreUsuario?.errors && NombreUsuario?.touched" class="text-danger">
+                            <p *ngIf="NombreUsuario?.hasError('required')">
+                                <small>El nombre de usuario es un campo obligatorio.</small>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label"><i class="fa fa-lock"></i> Contraseña</label>
+                        <input type="password" [ngClass]="{'is-invalid': Password?.errors && Password?.touched, 'is-valid': !Password?.errors && Password?.touched}" formControlName="password" [(ngModel)]="password" class="form-control" id="password">
+                        <div *ngIf="Password?.errors && Password?.touched" class="text-danger">
+                            <p *ngIf="Password?.hasError('required')">
+                                <small>La contraseña es un campo obligatorio.</small>
+                            </p>
+                            <p *ngIf="Password?.errors?.['minlength']">
+                                <small>La contraseña debe tener al menos 8 caracteres.</small>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Iniciar sesión</button>
+                    </div>
+                </form>
+            </div>
+        </ng-template>
     </div>
-    <ng-template #loginFormContainer>
-        <form [formGroup]="form" class="m-5 px-5" (ngSubmit)="onLogin()" #f="ngForm" novalidate>
-            <div class="mb-3">
-                <label for="nombreUsuario" class="form-label"><i class="fa fa-user"></i> Nombre de Usuario</label>
-                <input type="text" [ngClass]="{'is-invalid': NombreUsuario?.errors && NombreUsuario?.touched, 'is-valid': !NombreUsuario?.errors && NombreUsuario?.touched}" formControlName="nombreUsuario" [(ngModel)]="nombreUsuario" class="form-control" id="nombreUsuario">
-                <div *ngIf="NombreUsuario?.errors && NombreUsuario?.touched" class="text-danger">
-                    <p *ngIf="NombreUsuario?.hasError('required')">
-                        <small>El nombre de usuario es un campo obligatorio.</small>
-                    </p>
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label"><i class="fa fa-lock"></i> Contraseña</label>
-                <input type="password" [ngClass]="{'is-invalid': Password?.errors && Password?.touched, 'is-valid': !Password?.errors && Password?.touched}" formControlName="password" [(ngModel)]="password" class="form-control" id="password">
-                <div *ngIf="Password?.errors && Password?.touched" class="text-danger">
-                    <p *ngIf="Password?.hasError('required')">
-                        <small>La contraseña es un campo obligatorio.</small>
-                    </p>
-                    <p *ngIf="Password?.errors?.['minlength']">
-                        <small>La contraseña debe tener al menos 8 caracteres.</small>
-                    </p>
-                </div>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Iniciar sesión</button>
-            </div>
-        </form>
-    </ng-template>
 </div>

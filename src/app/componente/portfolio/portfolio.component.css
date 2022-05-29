@@ -1,0 +1,7 @@
+.container-general {
+    max-width: 1400px;
+    background-color: var(--bg-portfolio);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}

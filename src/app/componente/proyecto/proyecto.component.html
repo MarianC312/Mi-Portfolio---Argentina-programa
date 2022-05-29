@@ -1,10 +1,10 @@
-<div id="proyecto" class="my-5 bg-seccion position-relative p-5">
+<div id="proyecto" class="bg-seccion position-relative">
     <app-titulo [titulo]="'Mis proyectos'"></app-titulo>
 
     <div *ngIf="!loading else loadingContainer">
         <div class="py-5 d-flex justify-content-evenly flex-wrap">
-            <app-proyecto-card *ngFor="let proyecto of proyectoData" [titulo]="proyecto.titulo" [id]="proyecto.id" [imagen]="proyecto.imagen" [descripcion]="proyecto.descripcion" [url_deploy]="proyecto.url_deploy" [url_git]="proyecto.url_git" (eliminar)="eliminarProyecto(proyecto.id)"
-                [guardar]="editarProyecto"></app-proyecto-card>
+            <app-proyecto-card *ngFor="let proyecto of proyectoData" [isAdmin]="isAdmin" [titulo]="proyecto.titulo" [id]="proyecto.id" [imagen]="proyecto.imagen" [descripcion]="proyecto.descripcion" [url_deploy]="proyecto.url_deploy" [url_git]="proyecto.url_git"
+                (eliminar)="eliminarProyecto(proyecto.id)" [guardar]="editarProyecto"></app-proyecto-card>
         </div>
         <div *ngIf="isAdmin" class="d-flex justify-content-center align-items-center my-3">
             <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#nuevoProyectoModal"><i class="fa fa-plus"></i> Agregar proyecto</button>

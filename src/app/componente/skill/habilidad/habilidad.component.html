@@ -3,7 +3,7 @@
         <button type="button" class="btn btn-sm btn-link" data-bs-toggle="modal" [attr.data-bs-target]="'#hab-' + id + '-modal'"><i class="fa fa-pencil"></i></button>
         <button type="button" class="btn btn-sm btn-link" (click)="this.eliminar.emit()"><i class="fa fa-times"></i></button>
     </div>
-    <circle-progress [percent]="nivel" [radius]="100" [title]="titulo" [subtitle]="'Descripción rápida'" [showImage]="false" [imageSrc]="imagen" [animation]="true" [animationDuration]="300"></circle-progress>
+    <circle-progress [percent]="nivel" [radius]="100" [title]="titulo" [subtitle]="nivelTexto" [showImage]="false" [imageSrc]="imagen" [animation]="true" [animationDuration]="300"></circle-progress>
 </div>
 <div class="modal fade" [attr.id]="'hab-' + id + '-modal'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
