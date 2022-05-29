@@ -28,6 +28,7 @@ import { RegistroComponent } from './auth/registro.component';
 import { interceptorProvider } from './servicio/interceptor/prod-interceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { APP_BASE_HREF } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,7 +85,10 @@ import { ToastrModule } from 'ngx-toastr';
       preventDuplicates: true
     })
   ],
-  providers: [interceptorProvider],
+  providers: [
+    interceptorProvider,
+    {provide: APP_BASE_HREF, useValue: '/'}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
