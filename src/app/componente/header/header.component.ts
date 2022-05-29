@@ -47,6 +47,6 @@ export class HeaderComponent implements OnInit {
 
   onLogOut(): void{
     this.tokenService.logOut();
-    window.location.href = '/';
+    window.location.href = 'https://marianocampos.netlify.app/';
   }
 }
