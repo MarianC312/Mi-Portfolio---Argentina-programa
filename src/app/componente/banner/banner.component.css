@@ -13,7 +13,7 @@
 
 .banner-container::after {
     content: '';
-    background: no-repeat center/80% var(--banner-img);
+    background: no-repeat center var(--banner-img);
     opacity: 0.25;
     top: 0;
     left: 0;
