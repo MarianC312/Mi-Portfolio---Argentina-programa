@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ExperienciaModel } from '../modelo/experiencia-model.model';
 import { tap } from 'rxjs';
 import { PersonaServiceService } from './persona-service.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ import { PersonaServiceService } from './persona-service.service';
 export class ExperienciaServiceService {
 
   private data: ExperienciaModel[] = [];
-  private url: String = "https://immense-meadow-61678.herokuapp.com/experiencia";
+  apiURL = environment.apiURL;
+  private url: String = this.apiURL + "/experiencia";
 
   constructor(private HttpClient: HttpClient, private personaService: PersonaServiceService) {}
 

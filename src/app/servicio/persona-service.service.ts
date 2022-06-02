@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { PersonaModel } from '../modelo/persona-model.model';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ export class PersonaServiceService {
 
   private id: number = 1;
   private data: PersonaModel = null;
-  private url: string = "https://immense-meadow-61678.herokuapp.com/persona";
+  apiURL = environment.apiURL;
+  private url: string = this.apiURL + "/persona";
 
   constructor(private HttpClient: HttpClient) { }
 

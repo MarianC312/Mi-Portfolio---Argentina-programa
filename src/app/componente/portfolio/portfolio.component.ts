@@ -9,18 +9,12 @@ import { Token } from '@angular/compiler';
 })
 export class PortfolioComponent implements OnInit {
 
-  roles: string[];
   isAdmin: boolean = false;
 
   constructor(private tokenService: TokenService) { }
 
   ngOnInit(): void {
-    this.roles = this.tokenService.getAuthorities();
-    this.roles.forEach(rol => {
-      if(rol === 'ROLE_ADMIN'){
-        this.isAdmin = true;
-      }
-    })
+    this.isAdmin = this.tokenService.isAdmin();
   }
 
 }

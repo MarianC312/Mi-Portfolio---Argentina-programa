@@ -3,6 +3,7 @@ import { ProyectoModel } from '../modelo/proyecto-model.model';
 import { HttpClient } from '@angular/common/http';
 import { PersonaServiceService } from './persona-service.service';
 import { tap } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ import { tap } from 'rxjs';
 export class ProyectoServiceService {
 
   private data: ProyectoModel[] = [];
-  private url: String = "https://immense-meadow-61678.herokuapp.com/proyecto";
+  apiURL = environment.apiURL;
+  private url: String = this.apiURL + "/proyecto";
 
   constructor(private HttpClient: HttpClient, private personaService: PersonaServiceService) { }
 
