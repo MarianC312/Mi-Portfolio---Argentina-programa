@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { SkillServiceService } from './skill-service.service';
+import { Router } from '@angular/router';
+import { SecurityService } from './security.service';
 
 const TOKEN_KEY = 'AuthToken';
-const USERNAME_KEY = 'AuthUserName';
-const AUTHORITIES_KEY = 'AuthAuthorities';
 
 @Injectable({
   providedIn: 'root'
@@ -12,42 +12,62 @@ export class TokenService {
 
   roles: Array<string> = [];
 
-  constructor() { }
+  constructor(private router: Router, private securityService: SecurityService) { }
 
   public setToken(token: string): void{
-    window.sessionStorage.removeItem(TOKEN_KEY);
-    window.sessionStorage.setItem(TOKEN_KEY, token);
+    const tokenEnc = this.securityService.convertir(token, "enc");
+    window.localStorage.removeItem(TOKEN_KEY);
+    window.localStorage.setItem(TOKEN_KEY, tokenEnc);
   }
 
   public getToken(): string{
-    return sessionStorage.getItem(TOKEN_KEY);
+    const tokenDec = (localStorage.getItem(TOKEN_KEY)) ? this.securityService.convertir(localStorage.getItem(TOKEN_KEY), "dec") : "";
+    return tokenDec;
   }
 
-  public setUserName(userName: string): void{
-    window.sessionStorage.removeItem(USERNAME_KEY);
-    window.sessionStorage.setItem(USERNAME_KEY, userName);
+  public isLogged(): boolean{
+    if(this.getToken()){
+      return true;
+    }else{
+      return false;
+    }
   }
 
   public getUserName(): string{
-    return sessionStorage.getItem(USERNAME_KEY);
-  }
-
-  public setAuthorities(authorities: string[]): void{
-    window.sessionStorage.removeItem(AUTHORITIES_KEY);
-    window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
-  }
-
-  public getAuthorities(): string[]{
-    this.roles = [];
-    if(sessionStorage.getItem(AUTHORITIES_KEY)){
-      JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)).forEach((authority: any) => {
-        this.roles.push(authority.authority);
-      })
+    if(!this.isLogged()){
+      return null;
     }
-    return this.roles;
+    const token = this.getToken();
+    const payload = token.split(".")[1];
+    const payloadDec = atob(payload);
+    const values = JSON.parse(payloadDec);
+    const username = values.sub;
+    return username;
+  }
+
+  public isAdmin(): boolean{
+    if(!this.isLogged()){
+      return false;
+    }
+    const token = this.getToken();
+    const payload = token.split(".")[1];
+    const payloadDec = atob(payload);
+    const values = JSON.parse(payloadDec);
+    const roles = values.roles;
+    if(roles.indexOf("ROLE_ADMIN") < 0){
+      return false;
+    }else{
+      return true;
+    }
   }
 
   public logOut(): void{
-    window.sessionStorage.clear();
+    window.localStorage.clear();
+    //window.location.href = 'https://marianocampos.netlify.app/';
+    setTimeout(() => { this.router.navigate(['/login']); }, 750);
+    const elements = document.getElementsByClassName("modal-backdrop");
+    while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+    }
   }
 }

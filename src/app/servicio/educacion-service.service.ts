@@ -3,6 +3,7 @@ import { EducacionModel } from '../modelo/educacion-model.model';
 import { HttpClient } from '@angular/common/http';
 import { PersonaServiceService } from './persona-service.service';
 import { tap } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ import { tap } from 'rxjs';
 export class EducacionServiceService {
 
   private data: EducacionModel[] = [];
-  private url: String = "https://immense-meadow-61678.herokuapp.com/educacion";
+  apiURL = environment.apiURL;
+  url: String = this.apiURL + "/educacion";
 
   constructor(private HttpClient: HttpClient, private personaService: PersonaServiceService) { }
 

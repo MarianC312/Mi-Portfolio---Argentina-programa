@@ -3,6 +3,7 @@ import { SkillModel } from '../modelo/skill-model.model';
 import { PersonaServiceService } from './persona-service.service';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ import { tap } from 'rxjs';
 export class SkillServiceService {
 
   private data: SkillModel[] = [];
-  private url: String = "https://immense-meadow-61678.herokuapp.com/habilidad";
+  apiURL = environment.apiURL;
+  private url: String = this.apiURL + "/habilidad";
 
   constructor(private HttpClient: HttpClient, private personaService: PersonaServiceService) { }
 

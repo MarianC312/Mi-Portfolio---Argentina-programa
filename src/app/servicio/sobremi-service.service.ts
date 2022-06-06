@@ -3,6 +3,7 @@ import { SobremiModel } from '../modelo/sobremi-model.model';
 import { tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { PersonaServiceService } from './persona-service.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ import { PersonaServiceService } from './persona-service.service';
 export class SobremiServiceService {
 
   private data: SobremiModel[] = [];
-  private url: string = "https://immense-meadow-61678.herokuapp.com/sobremi";
+  apiURL = environment.apiURL;
+  private url: string = this.apiURL + "/sobremi";
 
   constructor(private HttpClient: HttpClient, private personaService: PersonaServiceService) { }
 

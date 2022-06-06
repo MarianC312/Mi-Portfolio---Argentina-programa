@@ -2,9 +2,11 @@
     <app-titulo [titulo]="'Experiencias laborales'"></app-titulo>
 
     <div *ngIf="!loading else loadingContainer">
-        <div id="experiencias" class="p-5" *ngFor="let experiencia of experienciaData">
-            <app-card [isAdmin]="isAdmin" [id]="experiencia.id" [titulo]="experiencia.titulo" [descripcion]="experiencia.descripcion" [periodo]="experiencia.periodo" [logo]="experiencia.logo" (eliminar)="eliminarExperiencia(experiencia.id)" [editar]="editarContenido"
-                [guardar]="editarExperiencia" [descartar]="descartarEditarContenido"></app-card>
+        <div class="py-5">
+            <div id="experiencias" class="p-5" *ngFor="let experiencia of experienciaData">
+                <app-card [isAdmin]="isAdmin" [id]="experiencia.id" [titulo]="experiencia.titulo" [descripcion]="experiencia.descripcion" [periodo]="experiencia.periodo" [logo]="experiencia.logo" (eliminar)="eliminarExperiencia(experiencia.id)" [editar]="editarContenido"
+                    [guardar]="editarExperiencia" [descartar]="descartarEditarContenido"></app-card>
+            </div>
         </div>
         <div *ngIf="!nuevaExperiencia; else nuevaExperienciaContenedor" class="my-3 d-flex justify-content-center align-items-center">
             <button type="button" *ngIf="isAdmin" class="btn btn-link" (click)="cargarNuevaExperiencia()">

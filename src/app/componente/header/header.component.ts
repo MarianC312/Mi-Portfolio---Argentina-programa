@@ -18,12 +18,8 @@ export class HeaderComponent implements OnInit {
     this.route.fragment.subscribe(fragment => {
       this.fragment = fragment;
     });
-    if(this.tokenService.getToken()){
-      this.isLogged = true;
-      this.nombreUsuario = this.tokenService.getUserName();
-    }else{
-      this.isLogged = false;
-    }
+    this.isLogged = this.tokenService.isLogged();
+    this.nombreUsuario = this.tokenService.getUserName();
   }
 
   scroll(id: string) {
@@ -47,6 +43,5 @@ export class HeaderComponent implements OnInit {
 
   onLogOut(): void{
     this.tokenService.logOut();
-    window.location.href = 'https://marianocampos.netlify.app/';
   }
 }

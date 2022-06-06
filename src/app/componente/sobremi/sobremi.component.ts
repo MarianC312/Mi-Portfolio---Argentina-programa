@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { SobremiModel } from '../../modelo/sobremi-model.model';
 import { SobremiServiceService } from '../../servicio/sobremi-service.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-sobremi',
@@ -16,16 +17,22 @@ export class SobremiComponent implements OnInit {
   nuevaAptitud: boolean = false;
   form:FormGroup;
   @Input() isAdmin: boolean = false;
+  loading: boolean = false;
   public listaIcono: String[] = ["code","music","heart","star","check","times","cog","home","flag","book","camera","picture-o","play","trophy","exclamation","users","globe","suitcase","smile-o","thumbs-up"]
 
   constructor(private formBuilder: FormBuilder, private sobremiService: SobremiServiceService) { }
 
   ngOnInit(): void {
+    this.loading = true;
     this.data = this.sobremiService.sobremiData;
     if(!this.data?.length){
-      this.sobremiService.fetchSobremiData().subscribe(() => {
+      this.sobremiService.fetchSobremiData().pipe(
+        finalize(() => this.loading = false)
+      ).subscribe(() => {
         this.data = this.sobremiService.sobremiData;
       });
+    }else{
+      this.loading = false;
     }
     this.form = this.formBuilder.group(
       {
