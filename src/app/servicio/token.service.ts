@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SkillServiceService } from './skill-service.service';
 import { Router } from '@angular/router';
+import { SecurityService } from './security.service';
 
 const TOKEN_KEY = 'AuthToken';
 
@@ -11,15 +12,17 @@ export class TokenService {
 
   roles: Array<string> = [];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private securityService: SecurityService) { }
 
   public setToken(token: string): void{
+    const tokenEnc = this.securityService.convertir(token, "enc");
     window.localStorage.removeItem(TOKEN_KEY);
-    window.localStorage.setItem(TOKEN_KEY, token);
+    window.localStorage.setItem(TOKEN_KEY, tokenEnc);
   }
 
   public getToken(): string{
-    return localStorage.getItem(TOKEN_KEY);
+    const tokenDec = (localStorage.getItem(TOKEN_KEY)) ? this.securityService.convertir(localStorage.getItem(TOKEN_KEY), "dec") : "";
+    return tokenDec;
   }
 
   public isLogged(): boolean{
@@ -61,6 +64,10 @@ export class TokenService {
   public logOut(): void{
     window.localStorage.clear();
     //window.location.href = 'https://marianocampos.netlify.app/';
-    this.router.navigate(['/login']);
+    setTimeout(() => { this.router.navigate(['/login']); }, 750);
+    const elements = document.getElementsByClassName("modal-backdrop");
+    while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+    }
   }
 }
