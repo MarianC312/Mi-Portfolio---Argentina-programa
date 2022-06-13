@@ -68,7 +68,6 @@ export class EducacionComponent implements OnInit {
   }
 
   onEnviar(event:Event){
-    event.preventDefault;
     let educacion: EducacionModel = {
       titulo: this.form.value.titulo,
       periodo: this.form.value.periodo,

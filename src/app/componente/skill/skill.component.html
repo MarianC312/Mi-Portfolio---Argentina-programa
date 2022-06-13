@@ -1,7 +1,7 @@
 <div id="skills" class="bg-seccion position-relative">
     <app-titulo [titulo]="'Mis habilidades'"></app-titulo>
-    <div *ngIf="!loading else loadingContainer">
-        <div class="d-flex justify-content-evenly flex-wrap py-5">
+    <div *ngIf="!loading">
+        <div class="d-flex justify-content-evenly flex-wrap p-5">
             <div *ngFor="let habilidad of skillData" class="d-flex position-relative">
                 <app-habilidad [isAdmin]="isAdmin" [id]="habilidad.id" [titulo]="habilidad.titulo" [imagen]="habilidad.imagen" [nivel]="habilidad.nivel" (eliminar)="eliminarHabilidad(habilidad.id)" [guardar]="editarHabilidad"></app-habilidad>
             </div>
@@ -10,10 +10,7 @@
             <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#nuevaHabilidadModal"><i class="fa fa-plus"></i> Agregar habilidad</button>
         </div>
     </div>
-
-    <ng-template #loadingContainer>
-        <app-loading></app-loading>
-    </ng-template>
+    <app-loading [forceDisplay]="loading"></app-loading>
 </div>
 <div class="modal fade" id="nuevaHabilidadModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -23,7 +20,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form [formGroup]="form" id="apt-f-nuevo" class="m-5 px-5" (ngSubmit)="onEnviar($event)" #documentEditForm="ngForm">
+                <app-loading [forceDisplay]="true"></app-loading>
+                <form [formGroup]="form" id="apt-f-nuevo" class="m-5 px-5" (ngSubmit)="onEnviar($event)" #f="ngForm">
                     <div class="mb-3">
                         <label for="titulo" class="form-label"><i class="fa fa-pencil"></i> Título</label>
                         <input type="text" [ngClass]="{'is-invalid': Titulo?.errors && Titulo?.touched, 'is-valid': !Titulo?.errors && Titulo?.touched}" formControlName="titulo" class="form-control" id="titulo">
@@ -56,7 +54,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary" (click)="documentEditForm.ngSubmit.emit($event)">Guardar</button>
+                <button type="submit" class="btn btn-primary" (click)="f.ngSubmit.emit($event)" [disabled]="!f.valid">Guardar</button>
             </div>
         </div>
     </div>

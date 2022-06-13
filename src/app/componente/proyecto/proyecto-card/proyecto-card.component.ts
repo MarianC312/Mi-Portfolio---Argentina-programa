@@ -47,7 +47,6 @@ export class ProyectoCardComponent implements OnInit {
   get Deploy() { return this.form.get('url_deploy'); }
 
   onEnviar(event:Event){
-    event.preventDefault;
     let proyecto: ProyectoModel = {
       id: this.id,
       titulo: this.form.value.titulo,

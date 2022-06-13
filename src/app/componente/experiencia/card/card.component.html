@@ -5,6 +5,7 @@
             <div class="btn-group" role="group" aria-label="Basic example" *ngIf="isAdmin">
                 <button type="button" class="btn " [ngClass]="{'btn-link': this.contentEditable === false, 'btn-primary': contentEditable === true}" (click)="check()">
                   <i class="fa " [ngClass]="{'fa-pencil': this.contentEditable === false, 'fa-floppy-o': this.contentEditable === true}"></i>
+                  <app-loading *ngIf="this.contentEditable" [forceDisplay]="true"></app-loading>
                 </button>
                 <div class="btn-group" role="group" aria-label="Basic example" *ngIf="this.contentEditable === true">
                     <button type="button" class="btn btn-danger" (click)="descartar()"><i class="fa fa-times-circle"></i></button>
@@ -27,7 +28,7 @@
                 <small class="mb-2">[<span id="periodo" [contentEditable]="this.contentEditable">{{periodo}}</span>]</small>
                 <small class="text-muted label" [ngClass]="{'d-none': this.contentEditable === false}">Título</small>
                 <h5 class="card-title">
-                    <p>#{{id}} <span id="titulo" [contentEditable]="this.contentEditable">{{titulo}}</span></p>
+                    <p><span id="titulo" [contentEditable]="this.contentEditable">{{titulo}}</span></p>
                 </h5>
             </div>
             <small class="text-muted label" [ngClass]="{'d-none': this.contentEditable === false}">Descripción</small>

@@ -3,6 +3,11 @@ export class PersonaModel {
     public nombre?: string;
     public apellido?: string;
     public imagen?: string;
+    public facebook?: string;
+    public instagram?: string;
+    public twitter?: string;
+    public email?: string;
+    public telefono?: string;
 
     /*
     constructor(

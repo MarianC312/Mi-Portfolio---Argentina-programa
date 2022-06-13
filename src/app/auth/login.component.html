@@ -3,6 +3,7 @@
     <div id="login" class="bg-seccion position-relative">
         <app-titulo [titulo]="'Iniciar sesión'"></app-titulo>
         <div class="py-5">
+            <app-loading [forceDisplay]="true"></app-loading>
             <form [formGroup]="form" class="m-5 px-5" (ngSubmit)="onLogin()" #f="ngForm" novalidate>
                 <div class="mb-3">
                     <label for="nombreUsuario" class="form-label"><i class="fa fa-user"></i> Nombre de Usuario</label>

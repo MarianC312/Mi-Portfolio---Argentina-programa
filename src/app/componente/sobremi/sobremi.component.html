@@ -1,4 +1,4 @@
-<div class="w-auto d-flex flex-wrap">
+<div class="w-auto d-flex flex-wrap justify-content-evenly">
     <div *ngFor="let aptitud of data" class="">
         <app-aptitud [isAdmin]="isAdmin" [titulo]="aptitud.titulo" [icono]="aptitud.icono" [id]="aptitud.id" (eliminar)="eliminarAptitud(aptitud.id)" [editar]="editarContenido" [guardar]="editarAptitud" [descartar]="descartarEditarContenido"></app-aptitud>
     </div>
@@ -14,7 +14,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form [formGroup]="form" id="apt-f-nuevo" class="m-5 px-5" (ngSubmit)="onEnviar($event)" #documentEditForm="ngForm">
+                <app-loading [forceDisplay]="true"></app-loading>
+                <form [formGroup]="form" id="apt-f-nuevo" class="m-5 px-5" (ngSubmit)="onEnviar($event)" #f="ngForm" novalidate>
                     <div class="mb-3">
                         <label for="icono" class="form-label"><i class="fa fa-pencil"></i> Ícono</label>
                         <input type="text" autocomplete="off" [ngClass]="{'is-invalid': Icono?.errors && Icono?.touched, 'is-valid': !Icono?.errors && Icono?.touched}" formControlName="icono" list="listaIcono" class="form-control" id="icono" placeholder="Tipea para buscar...">
@@ -43,7 +44,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary" (click)="documentEditForm.ngSubmit.emit($event)">Guardar</button>
+                <button type="submit" class="btn btn-primary" (click)="f.ngSubmit.emit($event)" [disabled]="!f.valid">Guardar</button>
             </div>
         </div>
     </div>

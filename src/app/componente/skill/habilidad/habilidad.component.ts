@@ -32,7 +32,7 @@ export class HabilidadComponent implements OnInit {
     this.form = this.formBuilder.group(
       {
         titulo:['', [Validators.required,Validators.minLength(3)]],
-        nivel:['', [Validators.required,Validators.minLength(1)]],
+        nivel:['', [Validators.required,Validators.min(0),Validators.max(100)]],
         imagen:['', []]
       }
     );
@@ -61,7 +61,6 @@ export class HabilidadComponent implements OnInit {
   }
 
   onEnviar(event:Event){
-    event.preventDefault;
     let habilidad: SkillModel = {
       id: this.id,
       titulo: this.form.value.titulo,

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-portfolio fixed-top px-2">
+<nav class="navbar navbar-expand-md navbar-light bg-portfolio fixed-top px-2 d-none">
     <a class="navbar-brand" href="#">Mi portafolio</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -28,5 +28,54 @@
                 <button type="button" class="btn nav-link logout d-flex flex-column"><span>Bienvenido {{nombreUsuario}}</span><span><i class="fa-solid fa-door-open"></i> Logout</span></button>
             </li>
         </ul>
+    </div>
+</nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-portfolio fixed-top px-2">
+    <div class="container-fluid">
+        <a class="navbar-brand" [routerLink]="['/portfolio']" fragment="banner" (click)="scroll('banner')">Mi portfolio</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item active">
+                    <button type="button" [routerLink]="['/portfolio']" fragment="sobremi" (click)="scroll('sobremi')" class="btn nav-link" data-bs-toggle="button">Sobre mi</button>
+                </li>
+                <li class="nav-item">
+                    <button type="button" [routerLink]="['/portfolio']" fragment="experiencia" (click)="scroll('experiencia')" class="btn nav-link" data-bs-toggle="button">Experiencia</button>
+                </li>
+                <li class="nav-item">
+                    <button type="button" [routerLink]="['/portfolio']" fragment="educacion" (click)="scroll('educacion')" class="btn nav-link">Educación</button>
+                </li>
+                <li class="nav-item">
+                    <button type="button" [routerLink]="['/portfolio']" fragment="skills" (click)="scroll('skills')" class="btn nav-link">Skills</button>
+                </li>
+                <li class="nav-item">
+                    <button type="button" [routerLink]="['/portfolio']" fragment="proyecto" (click)="scroll('proyecto')" class="btn nav-link">Proyectos</button>
+                </li>
+
+                <div class="d-flex ms-3">
+                    <li class="nav-item mx-1" *ngIf="personaData.facebook">
+                        <a href="{{personaData.facebook}}"><i class="fa-brands fa-facebook-square fa-2x text-black-50"></i></a>
+                    </li>
+
+                    <li class="nav-item mx-1" *ngIf="personaData.instagram">
+                        <a href="{{personaData.instagram}}"><i class="fa-brands fa-instagram-square fa-2x text-black-50"></i></a>
+                    </li>
+
+                    <li class="nav-item mx-1" *ngIf="personaData.twitter">
+                        <a href="{{personaData.twitter}}"><i class="fa-brands fa-twitter-square fa-2x text-black-50"></i></a>
+                    </li>
+                </div>
+            </ul>
+            <form class="d-flex">
+                <div *ngIf="!isLogged">
+                    <button type="button" [routerLink]="['/login']" class="btn nav-link login"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</button>
+                </div>
+                <div *ngIf="isLogged">
+                    <button type="button" class="btn nav-link logout d-flex flex-column" (click)="onLogOut()"><span>Bienvenido {{nombreUsuario}}</span><span><i class="fa-solid fa-door-open"></i> Logout</span></button>
+                </div>
+            </form>
+        </div>
     </div>
 </nav>

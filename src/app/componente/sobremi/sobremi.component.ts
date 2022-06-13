@@ -4,6 +4,7 @@ import { SobremiModel } from '../../modelo/sobremi-model.model';
 import { SobremiServiceService } from '../../servicio/sobremi-service.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { finalize } from 'rxjs';
+import { LoaderService } from '../../servicio/loader.service';
 
 @Component({
   selector: 'app-sobremi',
@@ -20,19 +21,24 @@ export class SobremiComponent implements OnInit {
   loading: boolean = false;
   public listaIcono: String[] = ["code","music","heart","star","check","times","cog","home","flag","book","camera","picture-o","play","trophy","exclamation","users","globe","suitcase","smile-o","thumbs-up"]
 
-  constructor(private formBuilder: FormBuilder, private sobremiService: SobremiServiceService) { }
+  constructor(private formBuilder: FormBuilder, private sobremiService: SobremiServiceService, private loader: LoaderService) { }
 
   ngOnInit(): void {
+
     this.loading = true;
     this.data = this.sobremiService.sobremiData;
     if(!this.data?.length){
       this.sobremiService.fetchSobremiData().pipe(
-        finalize(() => this.loading = false)
+        finalize(() => {
+          this.loading = false;
+          this.loader.hide();
+        })
       ).subscribe(() => {
         this.data = this.sobremiService.sobremiData;
       });
     }else{
-      this.loading = false;
+        this.loading = false;
+        this.loader.hide();
     }
     this.form = this.formBuilder.group(
       {
@@ -68,7 +74,6 @@ export class SobremiComponent implements OnInit {
   }
 
   onEnviar(event:Event){
-    event.preventDefault;
     let aptitud: SobremiModel = {
       icono: this.form.value.icono,
       titulo: this.form.value.titulo

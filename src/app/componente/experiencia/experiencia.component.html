@@ -1,7 +1,7 @@
 <div id="experiencia" class="bg-seccion position-relative">
     <app-titulo [titulo]="'Experiencias laborales'"></app-titulo>
 
-    <div *ngIf="!loading else loadingContainer">
+    <div *ngIf="!loading">
         <div class="py-5">
             <div id="experiencias" class="p-5" *ngFor="let experiencia of experienciaData">
                 <app-card [isAdmin]="isAdmin" [id]="experiencia.id" [titulo]="experiencia.titulo" [descripcion]="experiencia.descripcion" [periodo]="experiencia.periodo" [logo]="experiencia.logo" (eliminar)="eliminarExperiencia(experiencia.id)" [editar]="editarContenido"
@@ -17,8 +17,5 @@
             <app-nueva-experiencia [isAdmin]="isAdmin" (cancelar)="cancelarCargarNuevaExperiencia()" (fetch)="fetchExperiencias()"></app-nueva-experiencia>
         </ng-template>
     </div>
-
-    <ng-template #loadingContainer>
-        <app-loading></app-loading>
-    </ng-template>
+    <app-loading [forceDisplay]="loading"></app-loading>
 </div>

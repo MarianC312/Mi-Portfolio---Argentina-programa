@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { LoaderService } from '../../servicio/loader.service';
 
 @Component({
   selector: 'app-loading',
@@ -6,8 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./loading.component.css']
 })
 export class LoadingComponent implements OnInit {
-
-  constructor() { }
+  @Input() forceDisplay: boolean = false;
+  loading$ = this.loader.loading$;
+  constructor(public loader: LoaderService) {}
 
   ngOnInit(): void {
   }

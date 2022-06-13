@@ -56,6 +56,7 @@ import { APP_BASE_HREF } from '@angular/common';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     NgCircleProgressModule.forRoot({
       // set defaults here

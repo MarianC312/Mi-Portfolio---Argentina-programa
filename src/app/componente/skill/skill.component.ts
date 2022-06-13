@@ -64,7 +64,6 @@ export class SkillComponent implements OnInit {
   }
 
   onEnviar(event:Event){
-    event.preventDefault;
     let habilidad: SkillModel = {
       titulo: this.form.value.titulo,
       nivel: this.form.value.nivel,

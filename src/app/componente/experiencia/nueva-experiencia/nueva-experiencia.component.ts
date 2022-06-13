@@ -35,7 +35,6 @@ export class NuevaExperienciaComponent implements OnInit {
   @Output("fetch") fetch: EventEmitter<any> = new EventEmitter();
 
   onEnviar(event:Event){
-    event.preventDefault;
     this.experienciaService.agregarExperiencia(this.form.value);
     this.fetch.emit();
   }

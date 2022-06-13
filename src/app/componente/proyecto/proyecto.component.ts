@@ -68,7 +68,6 @@ export class ProyectoComponent implements OnInit {
   }
 
   onEnviar(event:Event){
-    event.preventDefault;
     let proyecto: ProyectoModel = {
       titulo: this.form.value.titulo,
       descripcion: this.form.value.descripcion,

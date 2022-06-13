@@ -37,4 +37,14 @@ export class PersonaServiceService {
     return this.id;
   }
 
+  editarPersona(pers: PersonaModel){
+    this.HttpClient.put(this.url + '/editar?persona_id=' + this.getId(), pers).subscribe( response => {
+      if(response){
+        this.data = response;
+      }else{
+        console.log("Error al editar persona!");
+      }
+    })
+  }
+
 }

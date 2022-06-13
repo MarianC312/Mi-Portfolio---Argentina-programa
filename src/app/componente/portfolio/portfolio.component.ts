@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenService } from '../../servicio/token.service';
-import { Token } from '@angular/compiler';
+import { LoaderService } from '../../servicio/loader.service';
 
 @Component({
   selector: 'app-portfolio',
@@ -10,7 +10,6 @@ import { Token } from '@angular/compiler';
 export class PortfolioComponent implements OnInit {
 
   isAdmin: boolean = false;
-
   constructor(private tokenService: TokenService) { }
 
   ngOnInit(): void {

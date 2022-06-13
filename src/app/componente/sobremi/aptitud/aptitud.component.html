@@ -29,7 +29,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form [formGroup]="form" id="apt-f-{{id}}" class="m-5 px-5" (ngSubmit)="onEnviar($event)" #documentEditForm="ngForm">
+                <app-loading [forceDisplay]="true"></app-loading>
+                <form [formGroup]="form" id="apt-f-{{id}}" class="m-5 px-5" (ngSubmit)="onEnviar($event)" #f="ngForm">
                     <div class="mb-3">
                         <label for="icono" class="form-label"><i class="fa fa-pencil"></i> Ícono</label>
                         <input type="text" autocomplete="off" [ngClass]="{'is-invalid': Icono?.errors && Icono?.touched, 'is-valid': !Icono?.errors && Icono?.touched}" [(ngModel)]="icono" formControlName="icono" list="listaIcono" class="form-control" id="icono" placeholder="Tipea para buscar...">
@@ -55,7 +56,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary" (click)="documentEditForm.ngSubmit.emit($event)">Guardar</button>
+                <button type="submit" class="btn btn-primary" (click)="f.ngSubmit.emit($event)" [disabled]="!f.valid">Guardar</button>
             </div>
         </div>
     </div>

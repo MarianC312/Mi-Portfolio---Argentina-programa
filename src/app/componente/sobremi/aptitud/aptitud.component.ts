@@ -59,7 +59,6 @@ export class AptitudComponent implements OnInit {
   get Titulo() { return this.form.get('titulo'); }
 
   onEnviar(event:Event){
-    event.preventDefault;
     let aptitud: SobremiModel = {
       id: this.id,
       icono: this.form.value.icono,

@@ -30,6 +30,7 @@
 
 .main-title {
     font-weight: bold !important;
+    line-break: auto;
 }
 
 

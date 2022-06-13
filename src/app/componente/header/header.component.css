@@ -4,6 +4,7 @@
 
 .navbar.bg-portfolio .navbar-nav .nav-item .nav-link {
     color: var(--text-color);
+    font-size: .9rem;
 }
 
 .navbar.bg-portfolio .navbar-nav .nav-item .nav-link:active,
@@ -30,19 +31,20 @@
     transition-duration: .5s;
 }
 
-.btn.nav-link.login {
+.btn.login {
     background-color: black;
     color: #FFF !important;
     transition-duration: .5s;
 }
 
-.btn.nav-link.login:hover {
+.btn.login:hover {
     background-color: #ba130d;
     transition-duration: .5s;
 }
 
-.btn.nav-link.logout {
+.btn.logout {
     font-size: .8rem;
     line-height: .8rem;
     text-align: right;
+    color: var(--text-black);
 }
