@@ -69,6 +69,7 @@ export class PersonaComponent implements OnInit {
       facebook: this.form.value.facebook,
       twitter: this.form.value.twitter,
       instagram: this.form.value.instagram,
+      cafecito: this.form.value.cafecito,
       email: this.form.value.email,
       telefono: this.form.value.telefono
     };
