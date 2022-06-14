@@ -1,9 +1,9 @@
-<div class="d-flex my-2 mx-2 align-items-center" style="min-width: 15rem;" [ngClass]="{'w-100': this.contentEditable === true}">
+<div class="d-flex my-2 mx-2" style="min-width: 15rem;" [ngClass]="{'w-100': this.contentEditable === true}">
     <div class="btn-group" style="height: 35px;" role="group" aria-label="Basic example" *ngIf="isAdmin">
         <button type="button" class="btn btn-sm btn-link" data-bs-toggle="modal" [attr.data-bs-target]="'#apt-' + id + '-modal'"><i class="fa fa-pencil"></i></button>
         <button type="button" class="btn btn-sm btn-link" (click)="this.eliminar.emit()"><i class="fa fa-times"></i></button>
     </div>
-    <div class="my-1 mx-2 d-flex flex-wrap fw-bold w-100 align-items-center">
+    <div class="my-1 mx-2 d-flex w-100">
         <div class="d-flex flex-column justify-content-start align-items-center me-2" style="min-width: 35px; min-height: 35px;">
             <i class="fa fa-{{icono}} fa-2x" [ngClass]="{'d-none': this.contentEditable === true}"></i>
             <div class="d-flex flex-column ms-2" [ngClass]="{'d-none': this.contentEditable === false}">
@@ -15,7 +15,7 @@
         </div>
         <div class="d-flex flex-column">
             <small class="text-muted label" [ngClass]="{'d-none': this.contentEditable === false}">Título</small>
-            <span id="titulo" class="text-uppercase text-break" [contentEditable]="this.contentEditable">
+            <span id="titulo" class="text-break" [contentEditable]="this.contentEditable">
               {{titulo}}
             </span>
         </div>
