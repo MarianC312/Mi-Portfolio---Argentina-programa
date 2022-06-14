@@ -6,6 +6,7 @@ export class PersonaModel {
     public facebook?: string;
     public instagram?: string;
     public twitter?: string;
+    public cafecito?: string;
     public email?: string;
     public telefono?: string;
 

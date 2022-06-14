@@ -91,6 +91,15 @@
                             </div>
                         </div>
                         <div class="mb-3">
+                            <!-- Cafecito -->
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="fa-regular fa-cup-togo me-2"></i>
+                                <input type="text" [ngClass]="{'is-invalid': Cafecito?.errors && Cafecito?.touched, 'is-valid': !Cafecito?.errors && Cafecito?.touched}" [(ngModel)]="personaData.cafecito" formControlName="cafecito" class="form-control" id="cafecito">
+                                <div *ngIf="Cafecito?.errors && Cafecito?.touched" class="text-danger">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
                             <label for="email" class="form-label"><i class="fa fa-pencil"></i> Email</label>
                             <input type="text" [ngClass]="{'is-invalid': Email?.errors && Email?.touched, 'is-valid': !Email?.errors && Email?.touched}" [(ngModel)]="personaData.email" formControlName="email" class="form-control" id="email">
                             <div *ngIf="Email?.errors && Email?.touched" class="text-danger">

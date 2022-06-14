@@ -43,6 +43,7 @@ export class PersonaComponent implements OnInit {
         facebook:['', []],
         twitter:['', []],
         instagram:['', []],
+        cafecito:['', []],
         email:['', []],
         telefono:['', []]
       }
@@ -54,6 +55,7 @@ export class PersonaComponent implements OnInit {
   get Imagen() { return this.form.get('imagen'); }
   get Facebook() { return this.form.get('facebook'); }
   get Twitter() { return this.form.get('twitter'); }
+  get Cafecito() { return this.form.get('cafecito'); }
   get Instagram() { return this.form.get('instagram'); }
   get Email() { return this.form.get('email'); }
   get Telefono() { return this.form.get('telefono'); }
