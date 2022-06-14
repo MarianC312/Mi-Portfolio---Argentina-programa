@@ -34,11 +34,6 @@
                     <div class="mb-3">
                         <label for="icono" class="form-label"><i class="fa fa-pencil"></i> Ícono</label>
                         <input type="text" autocomplete="off" [ngClass]="{'is-invalid': Icono?.errors && Icono?.touched, 'is-valid': !Icono?.errors && Icono?.touched}" [(ngModel)]="icono" formControlName="icono" list="listaIcono" class="form-control" id="icono" placeholder="Tipea para buscar...">
-                        <div *ngIf="Icono?.errors && Icono?.touched" class="text-danger">
-                            <p *ngIf="Icono?.hasError('required')">
-                                <small>El ícono es un campo obligatorio.</small>
-                            </p>
-                        </div>
                         <datalist id="listaIcono">
                           <option *ngFor="let item of listaIcono" [value]="item" ><i class="fa fa-{{item}}"></i> {{item}}</option>
                         </datalist>

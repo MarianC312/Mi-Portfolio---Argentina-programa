@@ -32,7 +32,7 @@ export class AptitudComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group(
       {
-        icono:['', [Validators.required]],
+        icono:['', []],
         titulo:['', [Validators.required]]
       }
     );
