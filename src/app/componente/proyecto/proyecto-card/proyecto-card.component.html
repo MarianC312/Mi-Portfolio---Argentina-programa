@@ -16,11 +16,15 @@
             <h5 class="card-title">{{titulo}}</h5>
             <p class="card-text" [innerHTML]="descripcion"></p>
             <div class="d-flex justify-content-end mt-2">
-                <div *ngIf="url_git != null" class="m-1">
-                    <button type="button" class="btn btn-primary"><i class="fa fa-github"></i></button>
+                <div *ngIf="url_git != null && url_git.length > 0" class="m-1">
+                    <a href="{{url_git}}" target="_blank">
+                        <button type="button" class="btn btn-primary"><i class="fa fa-github"></i></button>
+                    </a>
                 </div>
-                <div *ngIf="url_deploy != null" class="m-1">
-                    <button type="button" class="btn btn-primary"><i class="fa fa-external-link"></i></button>
+                <div *ngIf="url_deploy != null && url_deploy.length > 0" class="m-1">
+                    <a href="{{url_deploy}}" target="_blank">
+                        <button type="button" class="btn btn-primary"><i class="fa fa-external-link"></i></button>
+                    </a>
                 </div>
             </div>
         </div>
