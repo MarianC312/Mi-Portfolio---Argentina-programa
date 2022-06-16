@@ -14,7 +14,7 @@
         </ng-template>
         <div class="card-body">
             <h5 class="card-title">{{titulo}}</h5>
-            <p class="card-text">{{descripcion}}</p>
+            <p class="card-text" [innerHTML]="descripcion"></p>
             <div class="d-flex justify-content-end mt-2">
                 <div *ngIf="url_git != null" class="m-1">
                     <button type="button" class="btn btn-primary"><i class="fa fa-github"></i></button>
@@ -30,7 +30,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Agregar habilidad</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Agregar proyecto</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -54,7 +54,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="descripcion" class="form-label"><i class="fa fa-pencil"></i> Descripcion</label>
-                        <input type="text" [ngClass]="{'is-invalid': Descripcion?.errors && Descripcion?.touched, 'is-valid': !Descripcion?.errors && Descripcion?.touched}" [(ngModel)]="descripcion" formControlName="descripcion" class="form-control" id="descripcion">
+                        <textarea [ngClass]="{'is-invalid': Descripcion?.errors && Descripcion?.touched, 'is-valid': !Descripcion?.errors && Descripcion?.touched}" [(ngModel)]="descripcion" formControlName="descripcion" class="form-control" id="descripcion"></textarea>
                         <div *ngIf="Descripcion?.errors && Descripcion?.touched" class="text-danger">
                             <p *ngIf="Descripcion?.hasError('required')">
                                 <small>La descripcion es un campo obligatorio.</small>

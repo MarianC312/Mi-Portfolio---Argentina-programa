@@ -32,7 +32,7 @@
                 </h5>
             </div>
             <small class="text-muted label" [ngClass]="{'d-none': this.contentEditable === false}">Descripción</small>
-            <p class="card-text" id="descripcion" [contentEditable]="this.contentEditable">{{descripcion}}</p>
+            <p class="card-text" id="descripcion" [contentEditable]="this.contentEditable" [innerHTML]="descripcion"></p>
         </div>
     </div>
 </div>

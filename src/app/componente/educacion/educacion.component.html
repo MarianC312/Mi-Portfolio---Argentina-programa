@@ -52,7 +52,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="descripcion" class="form-label"><i class="fa fa-pencil"></i> Descripcion</label>
-                        <input type="text" [ngClass]="{'is-invalid': Descripcion?.errors && Descripcion?.touched, 'is-valid': !Descripcion?.errors && Descripcion?.touched}" formControlName="descripcion" class="form-control" id="descripcion">
+                        <textarea [ngClass]="{'is-invalid': Descripcion?.errors && Descripcion?.touched, 'is-valid': !Descripcion?.errors && Descripcion?.touched}" formControlName="descripcion" class="form-control" id="descripcion"></textarea>
                         <div *ngIf="Descripcion?.errors && Descripcion?.touched" class="text-danger">
                             <p *ngIf="Descripcion?.hasError('required')">
                                 <small>La descripción es un campo obligatorio.</small>
