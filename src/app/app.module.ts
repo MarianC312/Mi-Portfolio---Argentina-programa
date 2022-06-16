@@ -74,7 +74,7 @@ import { APP_BASE_HREF } from '@angular/common';
       imageWidth: 80,
       lazy: true,
       unitsFontSize: "12",
-      titleFontSize: "22",
+      titleFontSize: "18",
       titleFontWeight: "bold",
       subtitleFontSize: "14",
       titleColor: "#F05D23"
