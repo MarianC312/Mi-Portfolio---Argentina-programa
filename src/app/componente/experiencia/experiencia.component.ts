@@ -51,7 +51,7 @@ export class ExperienciaComponent implements OnInit {
 
   cargarNuevaExperiencia(): void{
     this.nuevaExperiencia = true;
-    this.scroll('nueva-experiencia');
+    //this.scroll('nueva-experiencia');
   }
 
   scroll(id: string) {
