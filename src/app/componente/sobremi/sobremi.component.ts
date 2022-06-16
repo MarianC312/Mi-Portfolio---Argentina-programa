@@ -42,7 +42,7 @@ export class SobremiComponent implements OnInit {
     }
     this.form = this.formBuilder.group(
       {
-        icono:['', [Validators.required]],
+        icono:['', []],
         titulo:['', [Validators.required,Validators.minLength(3)]]
       }
     );
