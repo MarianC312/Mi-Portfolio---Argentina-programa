@@ -14,10 +14,13 @@ const AUTHORIZATION = 'Authorization';
 })
 export class ProdInterceptorService implements HttpInterceptor {
 
+  requests: number = 0;
+  requestsComp: number = 0;
+
   constructor(private tokenService: TokenService, private authService: AuthService, private toastr: ToastrService, private loader: LoaderService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
+    this.requests++;
     this.loader.show();
     if(!this.tokenService.isLogged()){
       this.loader.hide();
@@ -28,7 +31,7 @@ export class ProdInterceptorService implements HttpInterceptor {
     intReq = this.addToken(req, token);
     return next.handle(intReq).pipe(
       finalize(() => {
-        this.loader.hide();
+        this.hideNReset();
       }),
       map(response => {
         this.toastr.success('Correcto!', 'OK');
@@ -42,7 +45,7 @@ export class ProdInterceptorService implements HttpInterceptor {
             this.toastr.success('Correcto!', 'OK');
             return next.handle(intReq).pipe(
               finalize(() => {
-                this.loader.hide();
+                this.hideNReset();
               })
             );
           }));
@@ -53,6 +56,14 @@ export class ProdInterceptorService implements HttpInterceptor {
         return throwError(error);
       })
     );
+  }
+
+  hideNReset(): void{
+    if(this.requests === this.requestsComp){
+      this.loader.hide();
+      this.requests = 0;
+      this.requestsComp = 0;
+    }
   }
 
   private addToken(req: HttpRequest<any>, token: String): HttpRequest<any>{

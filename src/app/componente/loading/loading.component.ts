@@ -8,6 +8,7 @@ import { LoaderService } from '../../servicio/loader.service';
 })
 export class LoadingComponent implements OnInit {
   @Input() forceDisplay: boolean = false;
+  @Input() class: string= 'text-primary';
   loading$ = this.loader.loading$;
   constructor(public loader: LoaderService) {}
 
