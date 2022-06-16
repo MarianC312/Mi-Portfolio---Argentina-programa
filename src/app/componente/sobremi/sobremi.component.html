@@ -2,7 +2,6 @@
     <div *ngFor="let aptitud of data" class="">
         <app-aptitud [isAdmin]="isAdmin" [titulo]="aptitud.titulo" [icono]="aptitud.icono" [id]="aptitud.id" (eliminar)="eliminarAptitud(aptitud.id)" [editar]="editarContenido" [guardar]="editarAptitud" [descartar]="descartarEditarContenido"></app-aptitud>
     </div>
-    <app-loading [forceDisplay]="loading" [class]="'text-secondary'"></app-loading>
 </div>
 <div class="d-flex justify-content-center align-items-center my-3" *ngIf="isAdmin">
     <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#nuevaAptitudModal"><i class="fa fa-plus"></i> Agregar aptitud</button>

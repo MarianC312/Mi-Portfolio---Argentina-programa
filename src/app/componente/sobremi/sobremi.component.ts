@@ -31,12 +31,14 @@ export class SobremiComponent implements OnInit {
       this.sobremiService.fetchSobremiData().pipe(
         finalize(() => {
           this.loading = false;
+          this.loader.hide();
         })
       ).subscribe(() => {
         this.data = this.sobremiService.sobremiData;
       });
     }else{
         this.loading = false;
+        this.loader.hide();
     }
     this.form = this.formBuilder.group(
       {
