@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ProyectoModel } from '../../../modelo/proyecto-model.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProyectoServiceService } from '../../../servicio/proyecto-service.service';
+import { finalize } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-proyecto-card',
@@ -19,14 +21,15 @@ export class ProyectoCardComponent implements OnInit {
   @Input() contentEditable: boolean = false;
   @Input() editar: () => void;
   @Input() descartar: () => void;
-  @Input() guardar: (habilidad: ProyectoModel) => void;
+  @Input() guardar: (habilidad: ProyectoModel) => boolean;
   @Input() isAdmin: boolean = false;
+  loading: boolean = false;
 
   @Output("eliminar") eliminar: EventEmitter<any> = new EventEmitter();
 
   form:FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private proyectoService: ProyectoServiceService) { }
+  constructor(private formBuilder: FormBuilder, private proyectoService: ProyectoServiceService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group(
@@ -47,6 +50,7 @@ export class ProyectoCardComponent implements OnInit {
   get Deploy() { return this.form.get('url_deploy'); }
 
   onEnviar(event:Event){
+    this.loading = true;
     let proyecto: ProyectoModel = {
       id: this.id,
       titulo: this.form.value.titulo,
@@ -56,5 +60,6 @@ export class ProyectoCardComponent implements OnInit {
       url_deploy: this.form.value.url_deploy
     };
     this.guardar(proyecto);
+    this.loading = false;
   }
 }

@@ -62,9 +62,8 @@ export class ProyectoComponent implements OnInit {
     this.removerProyectoDelArrego(id);
   }
 
-  editarProyecto(proyecto: any): void{
-    this.proyectoService.editarProyecto(proyecto);
-    this.contentEditable = false;
+  editarProyecto(proyecto: any): boolean{
+    return (this.proyectoService.editarProyecto(proyecto)) ? true : false;
   }
 
   onEnviar(event:Event){

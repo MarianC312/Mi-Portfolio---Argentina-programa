@@ -14,21 +14,38 @@ const AUTHORIZATION = 'Authorization';
 })
 export class ProdInterceptorService implements HttpInterceptor {
 
+  totalReq: number = 0;
+  finalReq: number = 0;
+
   constructor(private tokenService: TokenService, private authService: AuthService, private toastr: ToastrService, private loader: LoaderService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
+    this.totalReq++;
     this.loader.show();
     if(!this.tokenService.isLogged()){
       this.loader.hide();
-      return next.handle(req);
+      return next.handle(req).pipe(
+        finalize(() => {
+          this.loader.hide();
+        }),
+        map(response => {
+          return response;
+        }),
+        catchError((error: HttpErrorResponse) => {
+          console.log(error);
+          return throwError(error);
+        })
+      );
     }
     let intReq = req;
     const token = this.tokenService.getToken();
     intReq = this.addToken(req, token);
     return next.handle(intReq).pipe(
       finalize(() => {
-        this.loader.hide();
+        this.finalReq++;
+        if(this.finalReq === this.totalReq){
+          this.loader.hide();
+        }
       }),
       map(response => {
         this.toastr.success('Correcto!', 'OK');
@@ -42,13 +59,22 @@ export class ProdInterceptorService implements HttpInterceptor {
             this.toastr.success('Correcto!', 'OK');
             return next.handle(intReq).pipe(
               finalize(() => {
-                this.loader.hide();
+                this.finalReq++;
+                if(this.finalReq === this.totalReq){
+                  this.loader.hide();
+                }
+              }),
+              catchError((error: HttpErrorResponse) => {
+                this.toastr.error('Ocurrió un error, intente nuevamente.', 'ERROR');
+                console.log(error);
+                return throwError(error);
               })
-            );
+            )
           }));
         }else{
-          this.toastr.error('Ocurrió un error. Saliendo...', 'ERROR');
-          this.tokenService.logOut();
+          this.toastr.error('Ocurrió un error, intente nuevamente.', 'ERROR');
+          console.log(error);
+          //this.tokenService.logOut();
         }
         return throwError(error);
       })

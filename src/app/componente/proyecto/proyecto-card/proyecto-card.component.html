@@ -38,7 +38,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <app-loading [forceDisplay]="true"></app-loading>
+                <app-loading [forceDisplay]="loading"></app-loading>
                 <form [formGroup]="form" id="proy-f-nuevo" class="m-5 px-5" (ngSubmit)="onEnviar($event)" #f="ngForm">
                     <div class="mb-3">
                         <label for="titulo" class="form-label"><i class="fa fa-pencil"></i> Título</label>

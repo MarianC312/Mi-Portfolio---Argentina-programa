@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ProyectoModel } from '../modelo/proyecto-model.model';
 import { HttpClient } from '@angular/common/http';
 import { PersonaServiceService } from './persona-service.service';
-import { tap } from 'rxjs';
+import { tap, map, catchError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -53,17 +53,18 @@ export class ProyectoServiceService {
     });
   }
 
-  editarProyecto(proy: ProyectoModel){
-    console.log(proy);
-
-    this.HttpClient.put(this.url + '/editar?persona_id=' + this.personaService.getId(), proy).subscribe( response => {
-      if(response){
+  editarProyecto(proy: ProyectoModel): boolean{
+    this.HttpClient.put(this.url + '/editar?persona_id=' + this.personaService.getId(), proy).subscribe(
+      (response) => {
         this.data = this.data.filter( data => data != response);
         this.data.push(response);
-      }else{
-        console.log("Error al editar proyecto!");
+        return true;
+      },
+      (error) => {
+        console.log(error);
       }
-    })
+    )
+    return false;
   }
 
 }
