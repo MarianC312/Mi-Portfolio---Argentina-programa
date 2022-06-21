@@ -22,7 +22,7 @@
                     <button type="button" [routerLink]="['/portfolio']" fragment="proyecto" (click)="scroll('proyecto')" class="btn nav-link">Projects</button>
                 </li>
 
-                <div class="d-flex ms-3" *ngIf="isLogged && !loading">
+                <div class="d-flex ms-3">
                     <li class="nav-item mx-1" *ngIf="personaData.facebook">
                         <a href="{{personaData.facebook}}"><i class="fa-brands fa-facebook-square fa-2x text-black-50"></i></a>
                     </li>
