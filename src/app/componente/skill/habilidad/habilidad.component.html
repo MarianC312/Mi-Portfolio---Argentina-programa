@@ -1,59 +1,61 @@
-<div class="d-flex position-relative">
-    <div class="btn-group" *ngIf="isAdmin" style="height: 35px; position: absolute; left: 38%; top: 20%;" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-sm btn-link" data-bs-toggle="modal" [attr.data-bs-target]="'#hab-' + id + '-modal'"><i class="fa fa-pencil"></i></button>
-        <button type="button" class="btn btn-sm btn-link" (click)="this.eliminar.emit()"><i class="fa fa-times"></i></button>
+<div [ngClass]="{'d-none': !visible, 'd-block': visible}">
+    <div class="d-flex position-relative">
+        <div class="btn-group" *ngIf="isAdmin" style="height: 35px; position: absolute; left: 38%; top: 20%;" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-sm btn-link" data-bs-toggle="modal" [attr.data-bs-target]="'#hab-' + id + '-modal'"><i class="fa fa-pencil"></i></button>
+            <button type="button" class="btn btn-sm btn-link" (click)="this.eliminar.emit()"><i class="fa fa-times"></i></button>
+        </div>
+        <circle-progress [percent]="nivel" [radius]="100" [lazy]="visible" [title]="titulo" [subtitle]="nivelTexto" [showImage]="false" [imageSrc]="imagen" [animation]="true" [animationDuration]="300"></circle-progress>
     </div>
-    <circle-progress [percent]="nivel" [radius]="100" [title]="titulo" [subtitle]="nivelTexto" [showImage]="false" [imageSrc]="imagen" [animation]="true" [animationDuration]="300"></circle-progress>
-</div>
-<div class="modal fade" [attr.id]="'hab-' + id + '-modal'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Agregar habilidad</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <app-loading [forceDisplay]="true"></app-loading>
-                <form [formGroup]="form" id="apt-f-nuevo" class="m-5 px-5" (ngSubmit)="onEnviar($event)" #f="ngForm">
-                    <div class="mb-3">
-                        <label for="titulo" class="form-label"><i class="fa fa-pencil"></i> Título</label>
-                        <input type="text" [ngClass]="{'is-invalid': Titulo?.errors && Titulo?.touched, 'is-valid': !Titulo?.errors && Titulo?.touched}" [(ngModel)]="titulo" formControlName="titulo" class="form-control" id="titulo">
-                        <div *ngIf="Titulo?.errors && Titulo?.touched" class="text-danger">
-                            <p *ngIf="Titulo?.hasError('required')">
-                                <small>El título es un campo obligatorio.</small>
-                            </p>
-                            <p *ngIf="Titulo?.errors?.['minlength']">
-                                <small>El título debe tener al menos 8 caracteres.</small>
-                            </p>
+    <div class="modal fade" [attr.id]="'hab-' + id + '-modal'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Agregar habilidad</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <app-loading [forceDisplay]="true"></app-loading>
+                    <form [formGroup]="form" id="apt-f-nuevo" class="m-5 px-5" (ngSubmit)="onEnviar($event)" #f="ngForm">
+                        <div class="mb-3">
+                            <label for="titulo" class="form-label"><i class="fa fa-pencil"></i> Título</label>
+                            <input type="text" [ngClass]="{'is-invalid': Titulo?.errors && Titulo?.touched, 'is-valid': !Titulo?.errors && Titulo?.touched}" [(ngModel)]="titulo" formControlName="titulo" class="form-control" id="titulo">
+                            <div *ngIf="Titulo?.errors && Titulo?.touched" class="text-danger">
+                                <p *ngIf="Titulo?.hasError('required')">
+                                    <small>El título es un campo obligatorio.</small>
+                                </p>
+                                <p *ngIf="Titulo?.errors?.['minlength']">
+                                    <small>El título debe tener al menos 8 caracteres.</small>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="imagen" class="form-label"><i class="fa fa-pencil"></i> Imagen</label>
-                        <input type="text" [ngClass]="{'is-invalid': Imagen?.errors && Imagen?.touched, 'is-valid': !Imagen?.errors && Imagen?.touched}" [(ngModel)]="imagen" formControlName="imagen" class="form-control" id="imagen">
-                    </div>
-                    <div class="mb-3">
-                        <label for="nivel" class="form-label"><i class="fa fa-pencil"></i> Nivel</label>
-                        <input type="number" min=0 max=100 [ngClass]="{'is-invalid': Nivel?.errors && Nivel?.touched, 'is-valid': !Nivel?.errors && Nivel?.touched}" [(ngModel)]="nivel" formControlName="nivel" class="form-control" id="nivel">
-                        <div *ngIf="Nivel?.errors && Nivel?.touched" class="text-danger">
-                            <p *ngIf="Nivel?.hasError('required')">
-                                <small>El nivel es un campo obligatorio.</small>
-                            </p>
-                            <p *ngIf="Nivel?.errors?.['minlength']">
-                                <small>El nivel debe tener al menos 8 caracteres.</small>
-                            </p>
-                            <p *ngIf="Nivel?.errors?.['min']">
-                                <small>El nivel es desde 0 (%).</small>
-                            </p>
-                            <p *ngIf="Nivel?.errors?.['max']">
-                                <small>El nivel es hasta 100 (%).</small>
-                            </p>
+                        <div class="mb-3">
+                            <label for="imagen" class="form-label"><i class="fa fa-pencil"></i> Imagen</label>
+                            <input type="text" [ngClass]="{'is-invalid': Imagen?.errors && Imagen?.touched, 'is-valid': !Imagen?.errors && Imagen?.touched}" [(ngModel)]="imagen" formControlName="imagen" class="form-control" id="imagen">
                         </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary" (click)="f.ngSubmit.emit($event)" [disabled]="!f.valid">Guardar</button>
+                        <div class="mb-3">
+                            <label for="nivel" class="form-label"><i class="fa fa-pencil"></i> Nivel</label>
+                            <input type="number" min=0 max=100 [ngClass]="{'is-invalid': Nivel?.errors && Nivel?.touched, 'is-valid': !Nivel?.errors && Nivel?.touched}" [(ngModel)]="nivel" formControlName="nivel" class="form-control" id="nivel">
+                            <div *ngIf="Nivel?.errors && Nivel?.touched" class="text-danger">
+                                <p *ngIf="Nivel?.hasError('required')">
+                                    <small>El nivel es un campo obligatorio.</small>
+                                </p>
+                                <p *ngIf="Nivel?.errors?.['minlength']">
+                                    <small>El nivel debe tener al menos 8 caracteres.</small>
+                                </p>
+                                <p *ngIf="Nivel?.errors?.['min']">
+                                    <small>El nivel es desde 0 (%).</small>
+                                </p>
+                                <p *ngIf="Nivel?.errors?.['max']">
+                                    <small>El nivel es hasta 100 (%).</small>
+                                </p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" (click)="f.ngSubmit.emit($event)" [disabled]="!f.valid">Guardar</button>
+                </div>
             </div>
         </div>
     </div>

@@ -19,6 +19,7 @@ export class HabilidadComponent implements OnInit {
   @Input() descartar: () => void;
   @Input() guardar: (habilidad: SkillModel) => void;
   @Input() isAdmin: boolean = false;
+  @Input() visible: boolean = true;
   nivelTexto: string;
 
 

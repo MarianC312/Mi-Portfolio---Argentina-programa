@@ -16,6 +16,7 @@ export class SkillComponent implements OnInit {
   nuevaSkill: boolean = false;
   form:FormGroup;
   loading: boolean = false;
+  childShown: boolean[];
   @Input() isAdmin: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private skillService: SkillServiceService) { }
@@ -25,13 +26,26 @@ export class SkillComponent implements OnInit {
     this.skillData = this.skillService.skillData;
     if(!this.skillData?.length){
       this.skillService.fetchSkillData().pipe(
-        finalize(() => this.loading = false)
+        finalize(() => {
+          this.loading = false
+          this.childShown = new Array(this.skillData.length).fill(false);
+          console.log("childShown b");
+          console.log(this.childShown);
+          for(let i = 0; i < this.childShown.length; i++){
+            if(i < 3){
+              this.childShown[i] = true;
+            }
+          }
+          console.log("childShown a");
+          console.log(this.childShown);
+        })
       ).subscribe(() => {
         this.skillData = this.skillService.skillData;
       });
     }else{
       this.loading = false;
     }
+
     this.form = this.formBuilder.group(
       {
         titulo:['', [Validators.required,Validators.minLength(3)]],
@@ -70,6 +84,10 @@ export class SkillComponent implements OnInit {
       imagen: this.form.value.imagen
     };
     this.skillService.agregarSkill(habilidad);
+  }
+
+  toggleChild(): void{
+    this.childShown.map((val, i, arr) => { if(i > 3){ arr[i] = !arr[i] } });
   }
 
 }
