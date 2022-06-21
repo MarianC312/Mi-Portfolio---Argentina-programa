@@ -10,7 +10,7 @@
                     <input type="text" [ngClass]="{'is-invalid': NombreUsuario?.errors && NombreUsuario?.touched, 'is-valid': !NombreUsuario?.errors && NombreUsuario?.touched}" formControlName="nombreUsuario" [(ngModel)]="nombreUsuario" class="form-control" id="nombreUsuario">
                     <div *ngIf="NombreUsuario?.errors && NombreUsuario?.touched" class="text-danger">
                         <p *ngIf="NombreUsuario?.hasError('required')">
-                            <small>El nombre de usuario es un campo obligatorio.</small>
+                            <small>Name de usuario is a required field.</small>
                         </p>
                     </div>
                 </div>
@@ -19,10 +19,10 @@
                     <input type="password" [ngClass]="{'is-invalid': Password?.errors && Password?.touched, 'is-valid': !Password?.errors && Password?.touched}" formControlName="password" [(ngModel)]="password" class="form-control" id="password">
                     <div *ngIf="Password?.errors && Password?.touched" class="text-danger">
                         <p *ngIf="Password?.hasError('required')">
-                            <small>La contraseña es un campo obligatorio.</small>
+                            <small>La contraseña is a required field.</small>
                         </p>
                         <p *ngIf="Password?.errors?.['minlength']">
-                            <small>La contraseña debe tener al menos 8 caracteres.</small>
+                            <small>La contraseña must have at least 8 characters.</small>
                         </p>
                     </div>
                 </div>

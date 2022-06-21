@@ -1,5 +1,5 @@
 <div id="sobremi" class="bg-seccion position-relative">
-    <app-titulo [titulo]="'Sobre Mi'"></app-titulo>
+    <app-titulo [titulo]="'About me'"></app-titulo>
     <div *ngIf="!loading" class="seccion-container">
         <div class="d-flex p-5 flex-column justify-content-center align-items-center position-relative">
             <div class="btn-group" *ngIf="isAdmin" style="height: 35px; position: absolute; left: 70%; top: 20%;" role="group" aria-label="Basic example">
@@ -24,45 +24,45 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modificar imagen de perfil</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit profile photo</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <app-loading [forceDisplay]="true"></app-loading>
                 <form [formGroup]="form" id="per-f-nuevo" class="m-5 px-5" (ngSubmit)="onEnviar($event)" #f="ngForm">
                     <div class="mb-3">
-                        <label for="nombre" class="form-label"><i class="fa fa-pencil"></i> Nombre</label>
+                        <label for="nombre" class="form-label"><i class="fa fa-pencil"></i> Name</label>
                         <input type="text" [ngClass]="{'is-invalid': Nombre?.errors && Nombre?.touched, 'is-valid': !Nombre?.errors && Nombre?.touched}" [(ngModel)]="personaData.nombre" formControlName="nombre" class="form-control" id="nombre">
                         <div *ngIf="Nombre?.errors && Nombre?.touched" class="text-danger">
                             <p *ngIf="Nombre?.hasError('required')">
-                                <small>El nombre es un campo obligatorio.</small>
+                                <small>Name is a required field.</small>
                             </p>
                             <p *ngIf="Nombre?.errors?.['minlength']">
-                                <small>El nombre debe tener al menos 3 caracteres.</small>
+                                <small>Name must have at least 3 characters.</small>
                             </p>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="apellido" class="form-label"><i class="fa fa-pencil"></i> Apellido</label>
+                        <label for="apellido" class="form-label"><i class="fa fa-pencil"></i> Lastname</label>
                         <input type="text" [ngClass]="{'is-invalid': Apellido?.errors && Apellido?.touched, 'is-valid': !Apellido?.errors && Apellido?.touched}" [(ngModel)]="personaData.apellido" formControlName="apellido" class="form-control" id="apellido">
                         <div *ngIf="Apellido?.errors && Apellido?.touched" class="text-danger">
                             <p *ngIf="Apellido?.hasError('required')">
-                                <small>El apellido es un campo obligatorio.</small>
+                                <small>Lastname is a required field.</small>
                             </p>
                             <p *ngIf="Apellido?.errors?.['minlength']">
-                                <small>El apellido debe tener al menos 3 caracteres.</small>
+                                <small>Lastname must have at least 3 characters.</small>
                             </p>
                         </div>
                     </div>
                     <div class="collapse" id="collExtraData">
                         <div class="mb-3">
-                            <label for="imagen" class="form-label"><i class="fa fa-pencil"></i> Imagen</label>
+                            <label for="imagen" class="form-label"><i class="fa fa-pencil"></i> Photo</label>
                             <input type="text" [ngClass]="{'is-invalid': Imagen?.errors && Imagen?.touched, 'is-valid': !Imagen?.errors && Imagen?.touched}" [(ngModel)]="personaData.imagen" formControlName="imagen" class="form-control" id="imagen">
                             <div *ngIf="Imagen?.errors && Imagen?.touched" class="text-danger">
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="imagen" class="form-label"><i class="fa fa-pencil"></i> Redes sociales</label>
+                            <label for="imagen" class="form-label"><i class="fa fa-pencil"></i> Social media</label>
                             <!-- Twitter -->
                             <div class="d-flex align-items-center mb-2">
                                 <i class="fa-brands fa-twitter me-2"></i>
@@ -105,27 +105,27 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="telefono" class="form-label"><i class="fa fa-pencil"></i> Teléfono</label>
+                            <label for="telefono" class="form-label"><i class="fa fa-pencil"></i> Phone number</label>
                             <input type="text" [ngClass]="{'is-invalid': Telefono?.errors && Telefono?.touched, 'is-valid': !Telefono?.errors && Telefono?.touched}" [(ngModel)]="personaData.telefono" formControlName="telefono" class="form-control" id="telefono">
                             <div *ngIf="Telefono?.errors && Telefono?.touched" class="text-danger">
                             </div>
                         </div>
                         <div class="mb-3 d-flex justify-content-center" *ngIf="this.completarPerfil">
                             <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" (click)="this.completarPerfil = false" data-bs-target="#collExtraData" aria-expanded="true" aria-controls="collExtraData">
-                              Cancelar
+                              Cancel
                             </button>
                         </div>
                     </div>
                     <div class="mb-3 d-flex justify-content-center" *ngIf="!this.completarPerfil">
                         <button class="btn btn-primary" type="button" data-bs-toggle="collapse" (click)="this.completarPerfil = true" data-bs-target="#collExtraData" aria-expanded="false" aria-controls="collExtraData">
-                          Completar perfil
+                          Complete profile
                         </button>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary" (click)="f.ngSubmit.emit($event)" [disabled]="!f.valid">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary" (click)="f.ngSubmit.emit($event)" [disabled]="!f.valid">Save</button>
             </div>
         </div>
     </div>

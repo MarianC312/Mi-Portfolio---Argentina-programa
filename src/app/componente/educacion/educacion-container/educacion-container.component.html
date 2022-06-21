@@ -17,53 +17,53 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Editar aptitud</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit training</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <app-loading [forceDisplay]="true"></app-loading>
                 <form [formGroup]="form" id="edu-f-nuevo" class="m-5 px-5" (ngSubmit)="onEnviar($event)" #f="ngForm">
                     <div class="mb-3">
-                        <label for="titulo" class="form-label"><i class="fa fa-pencil"></i> Título</label>
+                        <label for="titulo" class="form-label"><i class="fa fa-pencil"></i> Title</label>
                         <input type="text" [ngClass]="{'is-invalid': Titulo?.errors && Titulo?.touched, 'is-valid': !Titulo?.errors && Titulo?.touched}" [(ngModel)]="titulo" formControlName="titulo" class="form-control" id="titulo">
                         <div *ngIf="Titulo?.errors && Titulo?.touched" class="text-danger">
                             <p *ngIf="Titulo?.hasError('required')">
-                                <small>El título es un campo obligatorio.</small>
+                                <small>Title is a required field.</small>
                             </p>
                             <p *ngIf="Titulo?.errors?.['minlength']">
-                                <small>El título debe tener al menos 8 caracteres.</small>
+                                <small>Title must have at least 8 characters.</small>
                             </p>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="periodo" class="form-label"><i class="fa fa-pencil"></i> Período</label>
+                        <label for="periodo" class="form-label"><i class="fa fa-pencil"></i> Period</label>
                         <input type="text" [ngClass]="{'is-invalid': Periodo?.errors && Periodo?.touched, 'is-valid': !Periodo?.errors && Periodo?.touched}" [(ngModel)]="periodo" formControlName="periodo" class="form-control" id="periodo">
                         <div *ngIf="Periodo?.errors && Periodo?.touched" class="text-danger">
                             <p *ngIf="Periodo?.hasError('required')">
-                                <small>El período es un campo obligatorio.</small>
+                                <small>Period is a required field.</small>
                             </p>
                             <p *ngIf="Periodo?.errors?.['minlength']">
-                                <small>El período debe tener al menos 5 caracteres.</small>
+                                <small>Period must have at least 5 characters.</small>
                             </p>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="descripcion" class="form-label"><i class="fa fa-pencil"></i> Descripcion</label>
+                        <label for="descripcion" class="form-label"><i class="fa fa-pencil"></i> Description</label>
                         <textarea [ngClass]="{'is-invalid': Descripcion?.errors && Descripcion?.touched, 'is-valid': !Descripcion?.errors && Descripcion?.touched}" [(ngModel)]="descripcion" formControlName="descripcion" class="form-control" id="descripcion"></textarea>
                         <div *ngIf="Descripcion?.errors && Descripcion?.touched" class="text-danger">
                             <p *ngIf="Descripcion?.hasError('required')">
-                                <small>La descripción es un campo obligatorio.</small>
+                                <small>Description is a required field.</small>
                             </p>
                             <p *ngIf="Descripcion?.errors?.['minlength']">
-                                <small>La descripción debe tener al menos 8 caracteres.</small>
+                                <small>Description must have at least 8 characters.</small>
                             </p>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary" (click)="f.ngSubmit.emit($event)" [disabled]="!f.valid">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary" (click)="f.ngSubmit.emit($event)" [disabled]="!f.valid">Save</button>
             </div>
         </div>
     </div>

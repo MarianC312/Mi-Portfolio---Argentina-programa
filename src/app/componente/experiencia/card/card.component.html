@@ -18,20 +18,20 @@
                 <i class="fa {{this.logo}} fa-5x"></i>
             </div>
             <div class="d-flex flex-column" [ngClass]="{'d-none': this.contentEditable === false}">
-                <small class="text-muted label">Ícono</small>
+                <small class="text-muted label">Icon</small>
                 <span class="label" id="exp-logo" [contentEditable]="this.contentEditable">{{this.logo}}</span>
             </div>
         </div>
         <div class="card-body">
             <div class="d-flex flex-column">
-                <small class="text-muted label" [ngClass]="{'d-none': this.contentEditable === false}">Período</small>
+                <small class="text-muted label" [ngClass]="{'d-none': this.contentEditable === false}">Period</small>
                 <small class="mb-2">[<span id="exp-periodo" [contentEditable]="this.contentEditable">{{periodo}}</span>]</small>
-                <small class="text-muted label" [ngClass]="{'d-none': this.contentEditable === false}">Título</small>
+                <small class="text-muted label" [ngClass]="{'d-none': this.contentEditable === false}">Title</small>
                 <h5 class="card-title">
                     <p><span id="exp-titulo" [contentEditable]="this.contentEditable">{{titulo}}</span></p>
                 </h5>
             </div>
-            <small class="text-muted label" [ngClass]="{'d-none': this.contentEditable === false}">Descripción</small>
+            <small class="text-muted label" [ngClass]="{'d-none': this.contentEditable === false}">Description</small>
             <p class="card-text" id="exp-descripcion" [contentEditable]="this.contentEditable" [innerHTML]="descripcion"></p>
         </div>
     </div>

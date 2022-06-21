@@ -1,5 +1,5 @@
 <div id="experiencia" class="bg-seccion position-relative">
-    <app-titulo [titulo]="'Experiencias laborales'"></app-titulo>
+    <app-titulo [titulo]="'Work experience'"></app-titulo>
 
     <div *ngIf="!loading">
         <div class="py-5">
@@ -9,8 +9,8 @@
             </div>
         </div>
         <div *ngIf="!nuevaExperiencia; else nuevaExperienciaContenedor" class="my-3 d-flex justify-content-center align-items-center">
-            <button type="button" *ngIf="isAdmin" class="btn btn-link" (click)="cargarNuevaExperiencia()">
-          <i class="fa fa-plus"></i> Agregar experiencia laboral
+            <button type="button" *ngIf="isAdmin" class="btn btn-primary rounded-circle" (click)="cargarNuevaExperiencia()">
+          <i class="fa fa-plus"></i>
         </button>
         </div>
         <ng-template #nuevaExperienciaContenedor>

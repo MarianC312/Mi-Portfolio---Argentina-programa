@@ -1,9 +1,9 @@
 <div class="banner-container container h-50 d-inline-block position-relative">
     <div id="banner" *ngIf="!loading" class="m-auto d-flex flex-column-reverse justify-content-center align-items-center position-absolute top-50 start-50">
         <h1 class="main-title">
-            Programador web fullstack
+            Fullstack web developer
         </h1>
-        <h4><small>Mi nombre es</small> {{personaData.nombre + ' ' + personaData.apellido}}.</h4>
+        <h4><small>I'm </small> {{personaData.nombre + ' ' + personaData.apellido}}.</h4>
     </div>
     <app-loading [forceDisplay]="loading"></app-loading>
 </div>
