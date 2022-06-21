@@ -3,7 +3,7 @@
 
     <div *ngIf="!loading">
         <div class="py-5">
-            <div id="experiencias" class="p-5" *ngFor="let experiencia of experienciaData">
+            <div id="experiencias" class="px-5" *ngFor="let experiencia of experienciaData">
                 <app-card [isAdmin]="isAdmin" [id]="experiencia.id" [titulo]="experiencia.titulo" [descripcion]="experiencia.descripcion" [periodo]="experiencia.periodo" [logo]="experiencia.logo" (eliminar)="eliminarExperiencia(experiencia.id)" [editar]="editarContenido"
                     [guardar]="editarExperiencia" [descartar]="descartarEditarContenido"></app-card>
             </div>
