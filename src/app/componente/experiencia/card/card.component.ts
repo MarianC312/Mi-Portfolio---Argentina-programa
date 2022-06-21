@@ -40,10 +40,10 @@ export class CardComponent implements OnInit {
 
       let exp = {
         id: this.id,
-        descripcion: document.getElementById("descripcion").innerText,
-        logo: document.getElementById("logo").innerText,
-        periodo: document.getElementById("periodo").innerText,
-        titulo: document.getElementById("titulo").innerText
+        descripcion: document.getElementById("exp-descripcion").innerText,
+        logo: document.getElementById("exp-logo").innerText,
+        periodo: document.getElementById("exp-periodo").innerText,
+        titulo: document.getElementById("exp-titulo").innerText
       }
       this.guardar(exp);
       //this.contentEditable = false;

@@ -26,10 +26,10 @@ export class NuevaExperienciaComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  get Titulo() { return this.form.get('titulo'); }
-  get Periodo() { return this.form.get('periodo'); }
-  get Logo() { return this.form.get('logo'); }
-  get Descripcion() { return this.form.get('descripcion'); }
+  get Titulo() { return this.form.get('exp-titulo'); }
+  get Periodo() { return this.form.get('exp-periodo'); }
+  get Logo() { return this.form.get('exp-logo'); }
+  get Descripcion() { return this.form.get('exp-descripcion'); }
 
   @Output("cancelar") cancelar: EventEmitter<any> = new EventEmitter();
   @Output("fetch") fetch: EventEmitter<any> = new EventEmitter();
